@@ -1,26 +1,22 @@
 import requests
 import json
-
 class Retriever(object):
-	def __init__(self, entry='', playerid=0):
+	def __init__(self, heroname='', playerid=0):
 		with open('heros.json', 'r') as myfile:
 			data = myfile.read()
-			self.hero = entry
+			self.hero = heroname
 			self.id = playerid
-			self.heroID = 0
-			self.heroValues = json.loads(data)
+			self.heroIDs = json.loads(data)
 
 	def call(self):
-		for i in self.heroValues:  # verify the hero name exists
+		self.realName = ''
+		for i in self.heroIDs:
+			# namevalue = i['name']
 			if len(self.hero) > 1 and self.hero in i['name']:
-				self.hero = i['localized_name']
-				self.heroID = i['id']
-				print('The hero {} exists! It has an ID Number of {}'.format(self.hero, self.heroID))
+				self.realName = i['localized_name']
+				print(self.realName)
 				break
-		with open('current_Stats.json', 'w') as outfile:
-			data = requests.get('https://api.opendota.com/api/herostats').content
-			loaded = json.loads(data)
-			json.dump(loaded, outfile)
+		api = 'https://api.opendota.com/api/heroes/{}/matches'
 
-t = Retriever('void')
+t = Retriever('axe')
 t.call()
