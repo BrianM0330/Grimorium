@@ -19,7 +19,8 @@ class Retriever(object):
 				break
 		with open('current_Stats.json', 'w') as outfile:
 			data = requests.get('https://api.opendota.com/api/herostats').content
-			json.dump(data, outfile)
+			loaded = json.loads(data)
+			json.dump(loaded, outfile)
 
 t = Retriever('void')
 t.call()
