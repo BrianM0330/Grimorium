@@ -10,9 +10,6 @@ class Retriever(object):
 			self.heroID = 0
 			self.heroValues = json.loads(data)
 
-	def recents(self):
-		self.api.format(self.heroID)
-
 	def call(self):
 		for i in self.heroValues:  # verify the hero name exists
 			if len(self.hero) > 1 and self.hero in i['name']:
