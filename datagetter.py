@@ -3,12 +3,15 @@ import json
 
 class Retriever(object):
 	def __init__(self, entry='', playerid=0):
-		with open('heros.json', 'r') as myfile:
-			data = myfile.read()
+			self.heroDefaults()
 			self.hero = entry
 			self.id = playerid
 			self.heroID = 0
-			self.heroValues = json.loads(data)
+
+	def heroDefaults(self):
+		with open('heros.json', 'r') as myfile:
+			data = myfile.read()
+		self.heroValues = json.loads(data)
 
 	def call(self):
 		for i in self.heroValues:  # verify the hero name exists
