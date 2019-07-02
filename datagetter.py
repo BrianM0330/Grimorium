@@ -5,6 +5,8 @@ class Retriever(object):
 	def __init__(self, entry='', playerid=0):
 			self.heroDefaults()
 			self.hero = entry
+			if len(self.hero) <= 0:
+				self.hero = self.promptforHero()
 			self.id = playerid
 			self.heroID = 0
 
@@ -12,6 +14,10 @@ class Retriever(object):
 		with open('heros.json', 'r') as myfile:
 			data = myfile.read()
 		self.heroValues = json.loads(data)
+
+	def promptforHero(self):
+		self.hero = input('Hello! Could you please enter the hero you want stats for?')
+		return self.hero.lower()
 
 	def call(self):
 		for i in self.heroValues:  # verify the hero name exists
