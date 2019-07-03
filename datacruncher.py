@@ -6,11 +6,6 @@ import json
 
 class Crunchy(Retriever):
 
-	def __init__(self):
-		super().__init__(self)
-		if self.hero.len() <= 0:
-			self.promptforHero()
-
 	def analyze(self):
 		with open('current_Stats.json') as infile:
 			data = json.load(infile)
@@ -20,6 +15,6 @@ class Crunchy(Retriever):
 			winRate1 = i['1_win'] / i['1_pick']
 			print( name + '\t' +  str(legCount)+ '\t'  + str(winRate1) )
 
-	plot( [ {'x': [1,2,3], 'y': [3,1,6]    }   ]   )
+	# plot( [ {'x': [1,2,3], 'y': [3,1,6]    }   ]   )
 
-t = Crunchy('')
+t = Crunchy('Axe')
