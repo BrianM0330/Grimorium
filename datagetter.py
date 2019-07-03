@@ -21,11 +21,12 @@ class Retriever(object):
 
 	def call(self):
 		for i in self.heroValues:  # verify the hero name exists
+			if ' ' in self.hero:
+				self.hero = self.hero.replace(' ', '_') #fixes the issue of spaces
 			if len(self.hero) > 1 and self.hero in i['name']:
 				self.hero = i['localized_name']
 				self.heroID = i['id']
 				print('The hero {} exists! It has an ID Number of {}'.format(self.hero, self.heroID))
-				break
 		with open('current_Stats.json', 'w') as outfile:
 			data = requests.get('https://api.opendota.com/api/herostats').content
 			loaded = json.loads(data)
