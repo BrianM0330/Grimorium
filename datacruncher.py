@@ -44,6 +44,6 @@ class Crunchy(Retriever):
 
 	# plot( [ {'x': [1,2,3], 'y': [3,1,6]    }   ]   )
 
-t = Crunchy('Axe')
+t = Crunchy()
 t.call()
 t.analyze()
