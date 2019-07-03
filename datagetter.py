@@ -4,7 +4,7 @@ import json
 class Retriever(object):
 	def __init__(self, entry='', playerid=0):
 			self.heroDefaults()
-			self.hero = entry
+			self.hero = entry.lower()
 			if len(self.hero) <= 0:
 				self.hero = self.promptforHero()
 			self.id = playerid
@@ -20,9 +20,9 @@ class Retriever(object):
 		return self.hero.lower()
 
 	def call(self):
+		if ' ' in self.hero:    #before calling for stats, make sure hero will be valid
+			self.hero = self.hero.replace(' ', '_')
 		for i in self.heroValues:  # verify the hero name exists
-			if ' ' in self.hero:
-				self.hero = self.hero.replace(' ', '_') #fixes the issue of spaces
 			if len(self.hero) > 1 and self.hero in i['name']:
 				self.hero = i['localized_name']
 				self.heroID = i['id']
