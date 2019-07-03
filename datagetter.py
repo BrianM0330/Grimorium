@@ -2,31 +2,24 @@ import requests
 import json
 
 class Retriever(object):
-	"""This class' main purpose is to initialize a hero with the proper attributes. These
-	attributes are neceessary for analyzing hero data. It also initializes important JSON
-	files containing important values."""
 	def __init__(self, entry='', playerid=0):
 			self.heroDefaults()
-			self.id = playerid
-			self.heroID = 0
 			self.hero = entry.lower()
 			if len(self.hero) == 0:
 				self.hero = self.promptforHero()
+			self.id = playerid
+			self.heroID = 0
 
 	def heroDefaults(self):
-		"""Opens the json file with heredata and loads it into self.heroValues """
 		with open('heros.json', 'r') as myfile:
 			data = myfile.read()
 		self.heroValues = json.loads(data)
 
 	def promptforHero(self):
-		"""A simple prompt used if the entry is blank or a hero doesn't exist"""
-		self.hero = input('Hello! Could you please enter the hero you want stats for? \n ')
+		self.hero = input('Hello! Could you please enter the hero you want stats for?')
 		return self.hero.lower()
 
 	def call(self):
-		"""First checks if hero exists. If it does, it then gets its localized_name and id from
-		heros.json. It also fixes spaces in the hero name."""
 		if ' ' in self.hero:    #before calling for stats, make sure hero will be valid
 			self.hero = self.hero.replace(' ', '_')
 
@@ -40,3 +33,6 @@ class Retriever(object):
 			data = requests.get('https://api.opendota.com/api/herostats').content
 			loaded = json.loads(data)
 			json.dump(loaded, outfile)
+
+t = Retriever('void')
+t.call()
