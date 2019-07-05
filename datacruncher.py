@@ -4,10 +4,10 @@ from datagetter import Retriever
 import json
 
 class Crunchy(Retriever):
+	with open('current_Stats.json') as infile:
+		data = json.load(infile)
 
-	def analyze(self):
-		with open('current_Stats.json') as infile:
-			data = json.load(infile)
+	def win_rates(self):
 		for i in data:
 			if self.heroID == i['id']:
 				name = i['localized_name']
@@ -45,4 +45,4 @@ class Crunchy(Retriever):
 
 t = Crunchy()
 t.call()
-t.analyze()
+t.win_rates()
