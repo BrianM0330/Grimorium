@@ -16,6 +16,7 @@ class Retriever(object):
 		self.heroValues = json.loads(data)
 
 	def promptforHero(self):
+		"""A simple prompt used if the entry is blank or a hero doesn't exist"""
 		self.hero = input('Hello! Could you please enter the hero you want stats for? \n ')
 		return self.hero.lower()
 
