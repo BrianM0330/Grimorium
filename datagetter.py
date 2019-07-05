@@ -20,6 +20,8 @@ class Retriever(object):
 		return self.hero.lower()
 
 	def call(self):
+		"""First checks if hero exists. If it does, it then gets its localized_name and id from
+		heros.json. It also fixes spaces in the hero name."""
 		if ' ' in self.hero:    #before calling for stats, make sure hero will be valid
 			self.hero = self.hero.replace(' ', '_')
 
