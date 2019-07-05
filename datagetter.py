@@ -21,7 +21,7 @@ class Retriever(object):
 
 	def promptforHero(self):
 		"""A simple prompt used if the entry is blank or a hero doesn't exist"""
-		self.hero = input('Hello! Could you please enter the hero you want stats for? \n ')
+		self.hero = input('Could you please enter the hero you want stats for? \n ')
 		return self.hero.lower()
 
 	def call(self):
@@ -36,6 +36,9 @@ class Retriever(object):
 				self.heroID = i['id']
 				print('The hero {} exists! It has an ID Number of {}'.format(self.hero, self.heroID))
 				break
+			else:
+				print("Uh oh, it looks like this hero doesn't exist yet. You may have made a typo. \n ")
+				self.promptforHero()
 		with open('current_Stats.json', 'w') as outfile:
 			data = requests.get('https://api.opendota.com/api/herostats').content
 			loaded = json.loads(data)
