@@ -10,6 +10,7 @@ class Retriever(object):
 			self.id = playerid
 			self.heroID = 0
 			self.hero = entry.lower()
+			self.roles = []
 			if len(self.hero) == 0:
 				self.hero = self.promptforHero()
 
@@ -30,15 +31,12 @@ class Retriever(object):
 		if ' ' in self.hero:    #before calling for stats, make sure hero will be valid
 			self.hero = self.hero.replace(' ', '_')
 
-		for i in self.heroValues:  # verify the hero name exists
+		for i in self.heroValues:
 			if len(self.hero) > 1 and self.hero in i['name']:
+				self.roles = i['roles']
 				self.hero = i['localized_name']
 				self.heroID = i['id']
 				print('The hero {} exists! It has an ID Number of {}'.format(self.hero, self.heroID))
-				break
-			else:
-				print("Uh oh, it looks like this hero doesn't exist yet. You may have made a typo. \n ")
-				self.promptforHero()
 		with open('current_Stats.json', 'w') as outfile:
 			data = requests.get('https://api.opendota.com/api/herostats').content
 			loaded = json.loads(data)
