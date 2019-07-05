@@ -3,7 +3,6 @@ from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
 from datagetter import Retriever
 import json
 
-
 class Crunchy(Retriever):
 
 	def analyze(self):
