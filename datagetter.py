@@ -11,6 +11,7 @@ class Retriever(object):
 				self.hero = self.promptforHero()
 
 	def heroDefaults(self):
+		"""Opens the json file with heredata and loads it into self.heroValues """
 		with open('heros.json', 'r') as myfile:
 			data = myfile.read()
 		self.heroValues = json.loads(data)
