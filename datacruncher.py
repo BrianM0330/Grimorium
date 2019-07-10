@@ -11,6 +11,8 @@ class Crunchy(Retriever):
 		self.totalWins = 0
 		with open('current_Stats.json') as infile:
 			self.data = json.load(infile)
+		with open ('hero_benchmarks.json') as infile2:
+			self.benchmark_data = json.load(infile2)
 
 	# def totals(self):
 	# 	for i in self.data:
@@ -54,8 +56,11 @@ class Crunchy(Retriever):
 
 				       + 'Winrate in Pro games games:' + '\t' + str(winRate8)  + '\n'   )
 
-		print("In {} games, {} has an overall winrate of {} ".format(self.totalPicks, self.hero, self.totalWins/self.totalPicks ))
+		print("In {} games, {} has an overall winrate of {} ".format(self.totalPicks, self.hero, self.totalWins/self.totalPicks))
 
+	def benchmarks(self):
+		for i in self.benchmark_data:
+			print(i)
 # plot( [ {'x': [1,2,3], 'y': [3,1,6]    }   ]   )
 
 t = Crunchy()
