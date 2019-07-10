@@ -1,5 +1,5 @@
-import plotly.graph_objs as go
-from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
+# import plotly.graph_objs as go
+# from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
 from datagetter import Retriever
 import json
 
@@ -9,7 +9,7 @@ class Crunchy(Retriever):
 		Retriever.__init__(self)
 		self.totalPicks = 0
 		self.totalWins = 0
-		with open('current_Stats.json') as infile:
+		with open('recent_stats.json') as infile:
 			self.data = json.load(infile)
 		with open ('hero_benchmarks.json') as infile2:
 			self.benchmark_data = json.load(infile2)
@@ -66,3 +66,5 @@ class Crunchy(Retriever):
 t = Crunchy()
 t.call()
 t.win_rates()
+
+print( t.benchmark_data )
