@@ -11,6 +11,7 @@ class Retriever(object):
 			self.heroID = 0
 			self.hero = entry.lower()
 			self.roles = []
+			self.benchmarks = {}
 			if len(self.hero) == 0:
 				self.hero = self.promptforHero()
 
@@ -41,3 +42,9 @@ class Retriever(object):
 			data = requests.get('https://api.opendota.com/api/herostats').content
 			loaded = json.loads(data)
 			json.dump(loaded, outfile)
+
+		#gets benchmarks
+		with open('hero_benchmarks.json', 'w') as outfile:
+			benchmarks = requests.get('https://api.opendota.com/api/benchmarks?hero_id={}'.format(self.heroID)).content
+			loading = json.loads(benchmarks)
+			json.dump(loading, outfile)
