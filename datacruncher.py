@@ -9,6 +9,7 @@ class Crunchy(Retriever):
 		Retriever.__init__(self)
 		self.totalPicks = 0
 		self.totalWins = 0
+		self.call()
 		with open('recent_stats.json') as infile:
 			self.data = json.load(infile)
 		with open ('hero_benchmarks.json') as infile2:
