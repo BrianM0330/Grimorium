@@ -8,6 +8,13 @@ class Crunchy(Retriever):
 
 	def __init__(self):
 		Retriever.__init__(self)
+		self.isUtility= False
+		self.isFarmer = False
+		self.isGanker = False
+		self.lowHP = False
+		self.lowMana = False
+		self.lowArmor = False
+
 		self.totalPicks = 0
 		self.totalWins = 0
 		self.call()
@@ -65,7 +72,13 @@ class Crunchy(Retriever):
 		gpm_percentile50 = 0
 		gpm_percentile10 = 0
 		gpm_totals = []
-		stdev = 0
+		gpm_stdev = 0
+
+		lh10_percentile99 = 0
+		lh10_percentile50 = 0
+		lh10_percentile10 = 0
+		lh10_totals = []
+		lh10_stdev = 0
 
 		for i in self.benchmark_data['result']['gold_per_min']:
 
@@ -97,9 +110,9 @@ class Crunchy(Retriever):
 				gpm_percentile99 = i['value']
 				gpm_totals.append(i['value'])
 
-			stdev = std(gpm_totals)
+			gpm_stdev = std(gpm_totals)
 		print("On average expect to get a GPM of {}. On a good game {} and on a bad one {}".format(gpm_percentile50, gpm_percentile99, gpm_percentile10))
-		print(stdev)
+		print("There is a standard deviation of {}".format(gpm_stdev))
 # plot( [ {'x': [1,2,3], 'y': [3,1,6]    }   ]   )
 
 t = Crunchy()
