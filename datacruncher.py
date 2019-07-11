@@ -1,5 +1,6 @@
 # import plotly.graph_objs as go
 # from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
+from numpy import std
 from datagetter import Retriever
 import json
 
@@ -60,21 +61,48 @@ class Crunchy(Retriever):
 		print("In {} games, {} has an overall winrate of {} ".format(self.totalPicks, self.hero, self.totalWins/self.totalPicks))
 
 	def get_benchmarks(self):
-		gpmpercentile99 = 0
-		gpmpercentile50 = 0
-		gpmpercentile10 = 0
+		gpm_percentile99 = 0
+		gpm_percentile50 = 0
+		gpm_percentile10 = 0
+		gpm_totals = []
+		stdev = 0
+
 		for i in self.benchmark_data['result']['gold_per_min']:
+
 			if i['percentile'] == 0.1:
-				gpmpercentile10 = i['value']
+				gpm_percentile10 = i['value']
+				gpm_totals.append(i['value'])
+
+			if i['percentile'] == 0.2:
+				gpm_totals.append(i['value'])
+			if i['percentile'] == 0.3:
+				gpm_totals.append(i['value'])
+			if i['percentile'] == 0.4:
+				gpm_totals.append(i['value'])
 			if i['percentile'] == 0.5:
-				gpmpercentile50 = i['value']
+				gpm_percentile50 = i['value']
+				gpm_totals.append(i['value'])
+
+			if i['percentile'] == 0.6:
+				gpm_totals.append(i['value'])
+			if i['percentile'] == 0.7:
+				gpm_totals.append(i['value'])
+			if i['percentile'] == 0.8:
+				gpm_totals.append(i['value'])
+			if i['percentile'] == 0.9:
+				gpm_totals.append(i['value'])
+			if i['percentile'] == 0.95:
+				gpm_totals.append(i['value'])
 			if i['percentile'] == 0.99:
-				gpmpercentile99 = i['value']
-		print("On average expect to get a GPM of {}. On a good game {} and on a bad one {}".format(gpmpercentile50, gpmpercentile99, gpmpercentile10))
+				gpm_percentile99 = i['value']
+				gpm_totals.append(i['value'])
+
+			stdev = std(gpm_totals)
+		print("On average expect to get a GPM of {}. On a good game {} and on a bad one {}".format(gpm_percentile50, gpm_percentile99, gpm_percentile10))
+		print(stdev)
 # plot( [ {'x': [1,2,3], 'y': [3,1,6]    }   ]   )
 
 t = Crunchy()
 t.call()
 t.win_rates()
-
-print( t.benchmark_data )
+t.get_benchmarks()
