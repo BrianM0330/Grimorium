@@ -11,7 +11,6 @@ class Retriever(object):
 			self.heroID = 0
 			self.hero = entry.lower()
 			self.roles = []
-			self.benchmarks = {}
 			if len(self.hero) == 0:
 				self.hero = self.promptforHero()
 
