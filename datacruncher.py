@@ -59,9 +59,18 @@ class Crunchy(Retriever):
 
 		print("In {} games, {} has an overall winrate of {} ".format(self.totalPicks, self.hero, self.totalWins/self.totalPicks))
 
-	def benchmarks(self):
-		for i in self.benchmark_data:
-			print(i)
+	def get_benchmarks(self):
+		gpmpercentile99 = 0
+		gpmpercentile50 = 0
+		gpmpercentile10 = 0
+		for i in self.benchmark_data['result']['gold_per_min']:
+			if i['percentile'] == 0.1:
+				gpmpercentile10 = i['value']
+			if i['percentile'] == 0.5:
+				gpmpercentile50 = i['value']
+			if i['percentile'] == 0.99:
+				gpmpercentile99 = i['value']
+		print("On average expect to get a GPM of {}. On a good game {} and on a bad one {}".format(gpmpercentile50, gpmpercentile99, gpmpercentile10))
 # plot( [ {'x': [1,2,3], 'y': [3,1,6]    }   ]   )
 
 t = Crunchy()
