@@ -20,7 +20,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
-      "Offlane",
+      "Playmaker_Off",
       "Initiator",
       "Durable",
       "Disabler",
