@@ -6,6 +6,7 @@
     "primary_attr": "agi",
     "attack_type": "Melee",
     "roles": [
+      "Safelane",
       "Carry",
       "Escape",
       "Nuker"
@@ -19,6 +20,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "Offlane",
       "Initiator",
       "Durable",
       "Disabler",
@@ -33,6 +35,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "Lane_Support",
       "Support",
       "Disabler",
       "Nuker",
@@ -47,6 +50,7 @@
     "primary_attr": "agi",
     "attack_type": "Melee",
     "roles": [
+      "All_Lanes",
       "Carry",
       "Disabler",
       "Jungler",
@@ -62,6 +66,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "Lane_Support",
       "Support",
       "Disabler",
       "Nuker",
@@ -76,6 +81,7 @@
     "primary_attr": "agi",
     "attack_type": "Ranged",
     "roles": [
+      "Safelane",
       "Carry",
       "Disabler",
       "Pusher"
@@ -89,6 +95,8 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "2nd_Supp",
+      "Playmaker",
       "Support",
       "Initiator",
       "Disabler",
@@ -103,6 +111,7 @@
     "primary_attr": "agi",
     "attack_type": "Melee",
     "roles": [
+      "Safelane",
       "Carry",
       "Pusher",
       "Escape"
@@ -116,6 +125,8 @@
     "primary_attr": "agi",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Supp",
+      "2nd_Core",
       "Carry",
       "Support",
       "Escape",
@@ -131,6 +142,7 @@
     "primary_attr": "agi",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Core",
       "Carry",
       "Escape",
       "Durable",
@@ -146,6 +158,7 @@
     "primary_attr": "agi",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Core",
       "Carry",
       "Nuker"
     ],
@@ -158,6 +171,7 @@
     "primary_attr": "agi",
     "attack_type": "Melee",
     "roles": [
+      "Safelane",
       "Carry",
       "Escape",
       "Pusher",
@@ -172,6 +186,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "Playmaker_Mid",
       "Initiator",
       "Disabler",
       "Escape",
@@ -186,6 +201,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "2nd_Supp",
       "Disabler",
       "Initiator",
       "Durable",
@@ -200,6 +216,7 @@
     "primary_attr": "agi",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Core",
       "Carry",
       "Durable",
       "Nuker",
@@ -214,6 +231,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "Playmaker_Off",
       "Initiator",
       "Disabler",
       "Support",
@@ -230,6 +248,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Supp",
       "Carry",
       "Escape",
       "Nuker",
@@ -245,6 +264,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "Safelane",
       "Carry",
       "Disabler",
       "Initiator",
@@ -260,6 +280,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "Playmaker",
       "Carry",
       "Nuker",
       "Pusher",
@@ -276,6 +297,7 @@
     "primary_attr": "agi",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Supp",
       "Support",
       "Initiator",
       "Disabler",
@@ -291,6 +313,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "Playmaker",
       "Carry",
       "Support",
       "Disabler",
@@ -301,11 +324,12 @@
   },
   {
     "id": 22,
-    "name": "npc_dota_hero_zuus",
+    "name": "npc_dota_hero_zeus",
     "localized_name": "Zeus",
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Core",
       "Nuker"
     ],
     "legs": 2
@@ -317,6 +341,8 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "2nd_Core",
+      "Playmaker",
       "Carry",
       "Support",
       "Disabler",
@@ -333,6 +359,8 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Core",
+      "Playmaker_Mid",
       "Support",
       "Carry",
       "Nuker",
@@ -347,6 +375,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Supp",
       "Support",
       "Disabler",
       "Nuker",
@@ -361,6 +390,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Supp",
       "Support",
       "Pusher",
       "Disabler",
@@ -376,6 +406,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "2nd_Supp",
       "Carry",
       "Durable",
       "Initiator",
@@ -391,6 +422,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "Playmaker_Off",
       "Initiator",
       "Durable",
       "Disabler",
@@ -405,6 +437,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "Lane_Supp",
       "Support",
       "Nuker",
       "Disabler"
@@ -418,6 +451,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "Lane_Supp",
       "Support",
       "Nuker"
     ],
@@ -430,6 +464,8 @@
     "primary_attr": "agi",
     "attack_type": "Melee",
     "roles": [
+      "2nd_Supp",
+      "Playmaker",
       "Carry",
       "Escape",
       "Disabler"
@@ -443,6 +479,8 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Supp",
+      "Playmaker",
       "Disabler",
       "Jungler",
       "Initiator",
@@ -457,6 +495,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Core",
       "Carry",
       "Nuker",
       "Pusher"
@@ -470,6 +509,8 @@
     "primary_attr": "agi",
     "attack_type": "Ranged",
     "roles": [
+      "Safelane",
+      "2nd_Core",
       "Carry",
       "Nuker"
     ],
@@ -482,6 +523,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Core",
       "Carry",
       "Nuker",
       "Durable",
@@ -496,6 +538,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "Lane_Supp",
       "Support",
       "Initiator",
       "Disabler"
@@ -509,6 +552,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "Playmaker_Off",
       "Initiator",
       "Disabler",
       "Durable",
@@ -523,6 +567,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "Playmaker_Mid",
       "Carry",
       "Nuker",
       "Escape"
@@ -536,6 +581,7 @@
     "primary_attr": "agi",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Supp",
       "Support",
       "Nuker",
       "Initiator",
@@ -551,6 +597,7 @@
     "primary_attr": "agi",
     "attack_type": "Melee",
     "roles": [
+      "Safelane",
       "Carry",
       "Initiator",
       "Disabler",
@@ -566,6 +613,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "Safelane",
       "Carry",
       "Support",
       "Durable",
@@ -581,6 +629,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Core",
       "Carry",
       "Pusher",
       "Nuker",
@@ -595,6 +644,8 @@
     "primary_attr": "agi",
     "attack_type": "Melee",
     "roles": [
+      "Safelane",
+      "Nuker",
       "Carry",
       "Escape"
     ],
@@ -607,6 +658,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Supp",
       "Nuker",
       "Pusher"
     ],
@@ -619,6 +671,9 @@
     "primary_attr": "agi",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Core",
+      "Pusher",
+      "Playmaker_Mid",
       "Carry",
       "Escape"
     ],
@@ -631,6 +686,7 @@
     "primary_attr": "agi",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Core",
       "Carry",
       "Durable",
       "Initiator",
@@ -645,6 +701,7 @@
     "primary_attr": "agi",
     "attack_type": "Ranged",
     "roles": [
+      "Safelane",
       "Carry",
       "Nuker",
       "Pusher"
@@ -658,6 +715,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "2nd_Core",
       "Carry",
       "Pusher",
       "Durable",
@@ -674,6 +732,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "Lane_Supp",
       "Support",
       "Nuker",
       "Disabler"
@@ -687,6 +746,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "Playmaker_Off",
       "Initiator",
       "Disabler",
       "Durable",
@@ -701,6 +761,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Core",
       "Carry",
       "Support",
       "Nuker",
@@ -716,6 +777,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Supp",
       "Carry",
       "Jungler",
       "Pusher",
@@ -731,6 +793,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "Safelane",
       "Carry",
       "Durable",
       "Jungler",
@@ -746,6 +809,7 @@
     "primary_attr": "int",
     "attack_type": "Melee",
     "roles": [
+      "Playmaker_Off",
       "Initiator",
       "Jungler",
       "Escape",
@@ -760,6 +824,7 @@
     "primary_attr": "agi",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Core",
       "Carry",
       "Escape",
       "Pusher"
@@ -773,6 +838,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "Lane_Supp",
       "Support",
       "Durable",
       "Nuker"
@@ -786,6 +852,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Supp",
       "Support",
       "Jungler",
       "Pusher",
@@ -801,6 +868,7 @@
     "primary_attr": "str",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Core",
       "Carry",
       "Durable",
       "Initiator"
@@ -814,6 +882,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "2nd_Supp",
       "Carry",
       "Initiator",
       "Durable",
@@ -829,6 +898,7 @@
     "primary_attr": "agi",
     "attack_type": "Melee",
     "roles": [
+      "2nd_Core",
       "Carry",
       "Pusher",
       "Escape",
@@ -843,6 +913,7 @@
     "primary_attr": "agi",
     "attack_type": "Melee",
     "roles": [
+      "2nd_Supp",
       "Escape",
       "Nuker"
     ],
@@ -855,6 +926,7 @@
     "primary_attr": "agi",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Core",
       "Carry",
       "Escape"
     ],
@@ -867,6 +939,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "Lane_Supp",
       "Support",
       "Nuker",
       "Pusher",
@@ -881,6 +954,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "Playmaker_Off",
       "Initiator",
       "Jungler",
       "Disabler",
@@ -895,6 +969,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Supp",
       "Support",
       "Jungler",
       "Pusher"
@@ -908,6 +983,7 @@
     "primary_attr": "agi",
     "attack_type": "Melee",
     "roles": [
+      "Safelane",
       "Carry",
       "Durable",
       "Escape"
@@ -921,6 +997,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "Lane_Supp",
       "Support",
       "Disabler",
       "Nuker"
@@ -934,6 +1011,8 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "2nd_Core",
+      "Playmaker_Off",
       "Carry",
       "Disabler",
       "Initiator",
@@ -949,6 +1028,7 @@
     "primary_attr": "agi",
     "attack_type": "Melee",
     "roles": [
+      "Safelane",
       "Carry",
       "Jungler",
       "Durable",
@@ -963,6 +1043,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "2nd_Supp",
       "Carry",
       "Initiator",
       "Disabler",
@@ -978,6 +1059,7 @@
     "primary_attr": "agi",
     "attack_type": "Ranged",
     "roles": [
+      "Safelane",
       "Carry",
       "Nuker",
       "Disabler"
@@ -991,6 +1073,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "2nd_Core",
       "Carry",
       "Support",
       "Durable",
@@ -1007,6 +1090,8 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "Playmaker_Mid",
+      "2nd_Core",
       "Carry",
       "Nuker",
       "Disabler",
@@ -1022,6 +1107,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Supp",
       "Carry",
       "Support",
       "Disabler",
@@ -1037,6 +1123,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Core",
       "Carry",
       "Nuker",
       "Disabler"
@@ -1050,6 +1137,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "Safelane",
       "Carry",
       "Pusher",
       "Jungler",
@@ -1065,6 +1153,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "Playmaker_Off",
       "Carry",
       "Initiator",
       "Durable",
@@ -1080,6 +1169,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Supp",
       "Support",
       "Disabler",
       "Initiator",
@@ -1094,6 +1184,7 @@
     "primary_attr": "agi",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Core",
       "Carry",
       "Pusher",
       "Jungler",
@@ -1108,10 +1199,10 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "Safelane",
       "Carry",
       "Disabler",
       "Durable",
-      "Pusher",
       "Initiator"
     ],
     "legs": 2
@@ -1123,6 +1214,7 @@
     "primary_attr": "agi",
     "attack_type": "Melee",
     "roles": [
+      "2nd_Core",
       "Carry",
       "Escape",
       "Nuker",
@@ -1139,6 +1231,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "Lane_Supp",
       "Support",
       "Initiator",
       "Durable",
@@ -1154,6 +1247,7 @@
     "primary_attr": "int",
     "attack_type": "Melee",
     "roles": [
+      "2nd_Supp",
       "Support",
       "Nuker",
       "Disabler",
@@ -1169,6 +1263,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "2nd_Supp",
       "Support",
       "Durable",
       "Disabler",
@@ -1183,6 +1278,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Supp",
       "Support",
       "Disabler",
       "Nuker"
@@ -1196,6 +1292,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "Lane_Supp",
       "Support",
       "Disabler",
       "Nuker",
@@ -1210,6 +1307,7 @@
     "primary_attr": "agi",
     "attack_type": "Melee",
     "roles": [
+      "2nd_Supp",
       "Disabler",
       "Nuker",
       "Initiator",
@@ -1224,6 +1322,8 @@
     "primary_attr": "agi",
     "attack_type": "Melee",
     "roles": [
+      "Safelane",
+      "2nd_Core",
       "Carry",
       "Support",
       "Pusher",
@@ -1240,6 +1340,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "Lane_Supp",
       "Support",
       "Nuker",
       "Disabler",
@@ -1254,6 +1355,7 @@
     "primary_attr": "str",
     "attack_type": "Ranged",
     "roles": [
+      "Lane_Supp",
       "Support",
       "Escape",
       "Nuker"
@@ -1267,11 +1369,11 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Supp",
       "Support",
       "Nuker",
       "Durable",
-      "Disabler",
-      "Pusher"
+      "Disabler"
     ],
     "legs": 2
   },
@@ -1282,6 +1384,7 @@
     "primary_attr": "agi",
     "attack_type": "Melee",
     "roles": [
+      "Safelane",
       "Carry",
       "Escape",
       "Disabler",
@@ -1296,6 +1399,8 @@
     "primary_attr": "agi",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Core",
+      "Safelane",
       "Carry",
       "Disabler",
       "Durable"
@@ -1309,6 +1414,7 @@
     "primary_attr": "agi",
     "attack_type": "Ranged",
     "roles": [
+      "Safelane",
       "Carry",
       "Pusher",
       "Disabler",
@@ -1323,6 +1429,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "Playmaker_Off",
       "Durable",
       "Initiator",
       "Disabler",
@@ -1333,11 +1440,12 @@
   },
   {
     "id": 97,
-    "name": "npc_dota_hero_magnataur",
+    "name": "npc_dota_hero_magnus",
     "localized_name": "Magnus",
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "Playmaker_Off",
       "Initiator",
       "Disabler",
       "Nuker",
@@ -1347,11 +1455,12 @@
   },
   {
     "id": 98,
-    "name": "npc_dota_hero_shredder",
+    "name": "npc_dota_hero_timbersaw",
     "localized_name": "Timbersaw",
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "Playmaker_Off",
       "Nuker",
       "Durable",
       "Escape"
@@ -1379,6 +1488,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "2nd_Supp",
       "Initiator",
       "Disabler",
       "Nuker"
@@ -1392,6 +1502,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "Lane_Supp",
       "Support",
       "Nuker",
       "Disabler"
@@ -1405,6 +1516,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "2nd_Supp",
       "Support",
       "Carry",
       "Durable"
@@ -1418,6 +1530,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "2nd_Supp",
       "Initiator",
       "Disabler",
       "Nuker",
@@ -1432,6 +1545,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "Playmaker_Off",
       "Carry",
       "Disabler",
       "Initiator",
@@ -1447,6 +1561,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Supp",
       "Nuker",
       "Disabler"
     ],
@@ -1459,6 +1574,8 @@
     "primary_attr": "agi",
     "attack_type": "Melee",
     "roles": [
+      "2nd_Core",
+      "Playmaker_Mid",
       "Carry",
       "Escape",
       "Nuker",
@@ -1474,6 +1591,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "2nd_Supp",
       "Nuker",
       "Escape",
       "Disabler",
@@ -1489,6 +1607,8 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "2nd_Supp",
+      "Playmaker_Off",
       "Support",
       "Nuker",
       "Disabler",
@@ -1504,6 +1624,7 @@
     "primary_attr": "agi",
     "attack_type": "Melee",
     "roles": [
+      "Safelane",
       "Carry",
       "Pusher",
       "Nuker"
@@ -1517,6 +1638,8 @@
     "primary_attr": "str",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Supp",
+      "Playmaker",
       "Support",
       "Nuker",
       "Initiator",
@@ -1532,6 +1655,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "Lane_Supp",
       "Support",
       "Nuker",
       "Disabler",
@@ -1546,6 +1670,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "Lane_Supp",
       "Support",
       "Disabler",
       "Nuker"
@@ -1559,6 +1684,8 @@
     "primary_attr": "agi",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Core",
+      "Pusher",
       "Carry",
       "Escape",
       "Nuker"
@@ -1572,6 +1699,8 @@
     "primary_attr": "agi",
     "attack_type": "Melee",
     "roles": [
+      "Safelane",
+      "2nd_Core",
       "Carry",
       "Escape",
       "Disabler",
@@ -1586,6 +1715,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Supp",
       "Support",
       "Nuker",
       "Disabler",
@@ -1600,6 +1730,7 @@
     "primary_attr": "agi",
     "attack_type": "Melee",
     "roles": [
+      "Playmaker",
       "Carry",
       "Nuker",
       "Disabler",
@@ -1616,6 +1747,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
+      "2nd_Supp",
       "Support",
       "Nuker",
       "Disabler",
@@ -1630,6 +1762,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "Playmaker_Off",
       "Carry",
       "Initiator",
       "Disabler",
