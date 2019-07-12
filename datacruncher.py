@@ -11,23 +11,19 @@ class Crunchy(Retriever):
 		self.isUtility= False
 		self.isFarmer = False
 		self.isGanker = False
+
 		self.lowHP = False
 		self.lowMana = False
 		self.lowArmor = False
 
 		self.totalPicks = 0
 		self.totalWins = 0
+
 		self.call()
 		with open('recent_stats.json') as infile:
 			self.data = json.load(infile)
 		with open ('hero_benchmarks.json') as infile2:
 			self.benchmark_data = json.load(infile2)
-
-	# def totals(self):
-	# 	for i in self.data:
-	# 		if self.heroID == i['id']:
-	# 			self.totalPicks =  i['1_pick'] + i['2_pick']  + i['3_pick']  + i['4_pick']  + i['5_pick']  + i['6_pick'] + i['7_pick']
-	# 			self.totalWins = i[]
 
 	def win_rates(self):
 		for i in self.data:
@@ -81,6 +77,7 @@ class Crunchy(Retriever):
 		lh10_stdev = 0
 
 		for i in self.benchmark_data['result']['gold_per_min']:
+			gpm_stdev = std(gpm_totals)
 
 			if i['percentile'] == 0.1:
 				gpm_percentile10 = i['value']
@@ -110,7 +107,6 @@ class Crunchy(Retriever):
 				gpm_percentile99 = i['value']
 				gpm_totals.append(i['value'])
 
-			gpm_stdev = std(gpm_totals)
 		print("On average expect to get a GPM of {}. On a good game {} and on a bad one {}".format(gpm_percentile50, gpm_percentile99, gpm_percentile10))
 		print("There is a standard deviation of {}".format(gpm_stdev))
 # plot( [ {'x': [1,2,3], 'y': [3,1,6]    }   ]   )

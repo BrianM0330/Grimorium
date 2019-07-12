@@ -18,7 +18,7 @@ class Retriever(object):
 		"""Opens the json file with heredata and loads it into self.heroValues """
 		with open('heros.json', 'r') as myfile:
 			data = myfile.read()
-		self.heroValues = json.loads(data)
+		self.heroValues = json.loads(data) #need to only get the specific dictionary for the hero
 
 	def promptforHero(self):
 		"""A simple prompt used if the entry is blank or a hero doesn't exist"""
