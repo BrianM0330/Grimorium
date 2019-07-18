@@ -13,7 +13,7 @@ class Crunchy(Retriever):
 		self.isUtility= False
 		self.isFarmer = False
 		self.isGanker = False
-
+		
 		self.lowHP = False
 		self.lowMana = False
 		self.lowArmor = False
@@ -112,9 +112,15 @@ class Crunchy(Retriever):
 		print("On average expect to get a GPM of {}. On a good game {} and on a bad one {}".format(gpm_percentile50, gpm_percentile99, gpm_percentile10))
 		print("There is a standard deviation of {}".format(gpm_stdev))
 
-		def graph(self):
-			return ''
+	def graph(self):
+		range = np.arange(10)
+
+		fig = go.Figure(data=go.Scatter(x=range, y=range**2))
+
+		fig.show()
+
 t = Crunchy()
 t.call()
 t.win_rates()
 t.get_benchmarks()
+t.graph()
