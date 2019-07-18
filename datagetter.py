@@ -30,6 +30,8 @@ class Retriever(object):
 		heros.json. It also fixes spaces in the hero name."""
 		if ' ' in self.hero:    #before calling for stats, make sure hero will be valid
 			self.hero = self.hero.replace(' ', '_')
+		if '-' in self.hero:
+			self.hero = self.hero.replace('-', '')
 
 		for i in self.heroValues:
 			if len(self.hero) > 1 and self.hero in i['name']:
