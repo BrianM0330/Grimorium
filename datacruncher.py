@@ -1,8 +1,10 @@
-# import plotly.graph_objs as go
-# from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
-from numpy import std
 from datagetter import Retriever
+import plotly.graph_objects as go
+import numpy as np
 import json
+
+#go = graph_objects
+
 
 class Crunchy(Retriever):
 
@@ -77,7 +79,7 @@ class Crunchy(Retriever):
 		lh10_stdev = 0
 
 		for i in self.benchmark_data['result']['gold_per_min']:
-			gpm_stdev = std(gpm_totals)
+			gpm_stdev = np.std(gpm_totals)
 
 			if i['percentile'] == 0.1:
 				gpm_percentile10 = i['value']
@@ -109,8 +111,9 @@ class Crunchy(Retriever):
 
 		print("On average expect to get a GPM of {}. On a good game {} and on a bad one {}".format(gpm_percentile50, gpm_percentile99, gpm_percentile10))
 		print("There is a standard deviation of {}".format(gpm_stdev))
-# plot( [ {'x': [1,2,3], 'y': [3,1,6]    }   ]   )
 
+		def graph(self):
+			return ''
 t = Crunchy()
 t.call()
 t.win_rates()
