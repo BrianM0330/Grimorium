@@ -6,6 +6,7 @@
     "primary_attr": "agi",
     "attack_type": "Melee",
     "roles": [
+      "Safelane",
       "Carry",
       "Escape",
       "Nuker"
