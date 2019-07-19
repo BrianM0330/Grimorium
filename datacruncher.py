@@ -29,6 +29,8 @@ class Crunchy(Retriever):
 			self.benchmark_data = json.load(infile2)
 
 	def win_rates(self):
+		self.pick_totals = []
+
 		for i in self.data:
 			if self.heroID == i['id']:
 				name = i['localized_name']
@@ -43,7 +45,7 @@ class Crunchy(Retriever):
 				winRate8 = i['pro_win'] / i['pro_pick']     #pro league
 				self.totalPicks =  i['1_pick'] + i['2_pick']  + i['3_pick']  + i['4_pick']  + i['5_pick']  + i['6_pick'] + i['7_pick']
 				self.totalWins = i['1_win'] + i['2_win'] + i['3_win'] + i['4_win'] + i['5_win'] + i['6_win'] + i['7_win']
-
+				pass
 
 				print( name + '\n' +
 				       "This hero has {} legs, let's see how it performs!".format(legCount) + '\n'
