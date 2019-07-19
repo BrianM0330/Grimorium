@@ -18,9 +18,9 @@ class Crunchy(Retriever):
 		self.lowMana = False
 		self.lowArmor = False
 
+		self.pick_totals = []
+		self.win_totals = []
 		self.gpm_totals = []
-		self.totalPicks = 0
-		self.totalWins = 0
 
 		self.call()
 		with open('recent_stats.json') as infile:
@@ -29,8 +29,6 @@ class Crunchy(Retriever):
 			self.benchmark_data = json.load(infile2)
 
 	def win_rates(self):
-		self.pick_totals = []
-		self.win_totals = []
 
 		for i in self.data:
 			if self.heroID == i['id']:
@@ -69,8 +67,8 @@ class Crunchy(Retriever):
 				self.pick_totals.append( i['8_pick'] )
 				self.win_totals.append( i['8_win'])
 
-				self.totalPicks =  i['1_pick'] + i['2_pick']  + i['3_pick']  + i['4_pick']  + i['5_pick']  + i['6_pick'] + i['7_pick']
-				self.totalWins = i['1_win'] + i['2_win'] + i['3_win'] + i['4_win'] + i['5_win'] + i['6_win'] + i['7_win']
+				self.totalPicks = sum(self.pick_totals)
+				self.totalWins = sum(self.win_totals)
 				pass
 
 				print( name + '\n' +
@@ -92,7 +90,7 @@ class Crunchy(Retriever):
 
 				       + 'Winrate in Pro games games:' + '\t' + str(winRate8)  + '\n'   )
 
-		print("In {} games, {} has an overall winrate of {} ".format(self.totalPicks, self.hero, self.totalWins/self.totalPicks))
+		print("In {} games, {} has an overall winrate of {} ".format(sum(self.pick_totals), self.hero, sum(self.win_totals)/sum(self.pick_totals)))
 
 	def get_benchmarks(self):
 		gpm_percentile99 = 0
