@@ -3,9 +3,6 @@ import plotly.graph_objs as go
 import numpy as np
 import json
 
-#go = graph_objects
-
-
 class Crunchy(Retriever):
 
 	def __init__(self):
@@ -13,7 +10,7 @@ class Crunchy(Retriever):
 		self.isUtility= False
 		self.isFarmer = False
 		self.isGanker = False
-		
+
 		self.lowHP = False
 		self.lowMana = False
 		self.lowArmor = False
@@ -27,6 +24,12 @@ class Crunchy(Retriever):
 			self.data = json.load(infile)
 		with open ('hero_benchmarks.json') as infile2:
 			self.benchmark_data = json.load(infile2)
+
+	# def totals(self):
+	# 	for i in self.data:
+	# 		if self.heroID == i['id']:
+	# 			self.totalPicks =  i['1_pick'] + i['2_pick']  + i['3_pick']  + i['4_pick']  + i['5_pick']  + i['6_pick'] + i['7_pick']
+	# 			self.totalWins = i[]
 
 	def win_rates(self):
 
