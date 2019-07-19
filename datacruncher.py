@@ -35,35 +35,35 @@ class Crunchy(Retriever):
 				name = i['localized_name']
 				legCount = i['legs']
 
-				winRate1 = i['1_win'] / i['1_pick']     # herald
+				winrate_herald = i['1_win'] / i['1_pick']     # herald
 				self.pick_totals.append( i['1_pick'] )
 				self.win_totals.append( i['1_win'])
 
-				winRate2 = i['2_win'] / i['2_pick']     # guardian
+				winrate_guardian = i['2_win'] / i['2_pick']     # guardian
 				self.pick_totals.append( i['2_pick'] )
 				self.win_totals.append( i['2_win'])
 
-				winRate3 = i['3_win'] / i['3_pick']     # crusader
+				winrate_crusader = i['3_win'] / i['3_pick']     # crusader
 				self.pick_totals.append( i['3_pick'] )
 				self.win_totals.append( i['3_win'])
 
-				winRate4 = i['4_win'] / i['4_pick']     # archon
+				winrate_archon = i['4_win'] / i['4_pick']     # archon
 				self.pick_totals.append( i['4_pick'] )
 				self.win_totals.append( i['4_win'])
 
-				winRate5 = i['5_win'] / i['5_pick']     # legend
+				winrate_legend = i['5_win'] / i['5_pick']     # legend
 				self.pick_totals.append( i['5_pick'] )
 				self.win_totals.append( i['5_win'])
 
-				winRate6 = i['6_win'] / i['6_pick']     # ancient
+				winrate_ancient = i['6_win'] / i['6_pick']     # ancient
 				self.pick_totals.append( i['6_pick'] )
 				self.win_totals.append( i['6_win'])
 
-				winRate7 = i['7_win'] / i['7_pick']     # divine
+				winrate_divine = i['7_win'] / i['7_pick']     # divine
 				self.pick_totals.append( i['7_pick'] )
 				self.win_totals.append( i['7_win'])
 
-				winRate8 = i['pro_win'] / i['pro_pick']     #pro league
+				winrate_pro_league = i['pro_win'] / i['pro_pick']     #pro league
 				self.pick_totals.append( i['8_pick'] )
 				self.win_totals.append( i['8_win'])
 
@@ -74,21 +74,21 @@ class Crunchy(Retriever):
 				print( name + '\n' +
 				       "This hero has {} legs, let's see how it performs!".format(legCount) + '\n'
 
-				       + 'Winrate in Herald games:' + '\t' + str(winRate1) + '\n'
+				       + 'Winrate in Herald games:' + '\t' + str(winrate_herald) + '\n'
 
-				       + 'Winrate in Guardian games:' + '\t' + str(winRate2) + '\n'
+				       + 'Winrate in Guardian games:' + '\t' + str(winrate_guardian) + '\n'
 
-				       + 'Winrate in Crusader games:' + '\t' + str(winRate3) + '\n'
+				       + 'Winrate in Crusader games:' + '\t' + str(winrate_crusader) + '\n'
 
-				       + 'Winrate in Archon games:' + '\t' + str(winRate4) + '\n'
+				       + 'Winrate in Archon games:' + '\t' + str(winrate_archon) + '\n'
 
-				       + 'Winrate in Legend games:' + '\t' + str(winRate5) + '\n'
+				       + 'Winrate in Legend games:' + '\t' + str(winrate_legend) + '\n'
 
-				       + 'Winrate in Ancient games:' + '\t' + str(winRate6) + '\n'
+				       + 'Winrate in Ancient games:' + '\t' + str(winrate_ancient) + '\n'
 
-				       + 'Winrate in Divine games:' + '\t' + str(winRate7) + '\n'
+				       + 'Winrate in Divine games:' + '\t' + str(winrate_divine) + '\n'
 
-				       + 'Winrate in Pro games games:' + '\t' + str(winRate8)  + '\n'   )
+				       + 'Winrate in Pro games games:' + '\t' + str(winrate_pro_league)  + '\n'   )
 
 		print("In {} games, {} has an overall winrate of {} ".format(sum(self.pick_totals), self.hero, sum(self.win_totals)/sum(self.pick_totals)))
 
