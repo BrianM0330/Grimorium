@@ -30,19 +30,45 @@ class Crunchy(Retriever):
 
 	def win_rates(self):
 		self.pick_totals = []
+		self.win_totals = []
 
 		for i in self.data:
 			if self.heroID == i['id']:
 				name = i['localized_name']
 				legCount = i['legs']
+
 				winRate1 = i['1_win'] / i['1_pick']     # herald
+				self.pick_totals.append( i['1_pick'] )
+				self.win_totals.append( i['1_win'])
+
 				winRate2 = i['2_win'] / i['2_pick']     # guardian
+				self.pick_totals.append( i['2_pick'] )
+				self.win_totals.append( i['2_win'])
+
 				winRate3 = i['3_win'] / i['3_pick']     # crusader
+				self.pick_totals.append( i['3_pick'] )
+				self.win_totals.append( i['3_win'])
+
 				winRate4 = i['4_win'] / i['4_pick']     # archon
+				self.pick_totals.append( i['4_pick'] )
+				self.win_totals.append( i['4_win'])
+
 				winRate5 = i['5_win'] / i['5_pick']     # legend
+				self.pick_totals.append( i['5_pick'] )
+				self.win_totals.append( i['5_win'])
+
 				winRate6 = i['6_win'] / i['6_pick']     # ancient
+				self.pick_totals.append( i['6_pick'] )
+				self.win_totals.append( i['6_win'])
+
 				winRate7 = i['7_win'] / i['7_pick']     # divine
+				self.pick_totals.append( i['7_pick'] )
+				self.win_totals.append( i['7_win'])
+
 				winRate8 = i['pro_win'] / i['pro_pick']     #pro league
+				self.pick_totals.append( i['8_pick'] )
+				self.win_totals.append( i['8_win'])
+
 				self.totalPicks =  i['1_pick'] + i['2_pick']  + i['3_pick']  + i['4_pick']  + i['5_pick']  + i['6_pick'] + i['7_pick']
 				self.totalWins = i['1_win'] + i['2_win'] + i['3_win'] + i['4_win'] + i['5_win'] + i['6_win'] + i['7_win']
 				pass
