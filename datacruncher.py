@@ -1,6 +1,7 @@
 from datagetter import Retriever
 import plotly.graph_objs as go
 import numpy as np
+import pandas as pd
 import json
 
 class Crunchy(Retriever):
@@ -35,6 +36,7 @@ class Crunchy(Retriever):
 
 		for i in self.data:
 			if self.heroID == i['id']:
+				self.data = i #makes data the hero dictionary
 				name = i['localized_name']
 				legCount = i['legs']
 
@@ -94,6 +96,7 @@ class Crunchy(Retriever):
 				       + 'Winrate in Pro games games:' + '\t' + str(winrate_pro_league)  + '\n'   )
 
 		print("In {} games, {} has an overall winrate of {} ".format(sum(self.pick_totals), self.hero, sum(self.win_totals)/sum(self.pick_totals)))
+		pass
 
 	def get_benchmarks(self):
 		gpm_percentile99 = 0
@@ -143,11 +146,15 @@ class Crunchy(Retriever):
 		print("There is a standard deviation of {}".format(gpm_stdev))
 
 	def graph(self):
+
+		df = pd.DataFrame(list(self.data))
+		print(df)
+
 		range = np.arange(10)
 
-		fig = go.Figure(data=go.Scatter(x=range, y=range**2))
+		# fig = go.Figure(data=go.Scatter(x=range, y=range**2))
 
-		fig.show(renderer = 'browser')
+		# fig.show(renderer = 'browser')
 
 t = Crunchy()
 t.call()
