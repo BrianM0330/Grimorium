@@ -150,8 +150,7 @@ class Crunchy(Retriever):
 		print("There is a standard deviation of {}".format(gpm_stdev))
 
 	def graph(self):
-
-		# Graphing Hero Picks (Bar)
+		# --------------------Graphing Hero Picks (Bar)-----------------------------#
 		self.data = sorted(self.data.items())
 		df = pd.DataFrame.from_dict(self.data, orient='columns')
 		df.columns = ['Picks', 'Results']
@@ -159,6 +158,7 @@ class Crunchy(Retriever):
 		print(df)
 
 		ranks = ['Guardian', 'Crusader', 'Archon', 'Legend', 'Ancient', 'Divine']
+		winrates = [self.winrate_guardian, self.winrate_crusader, self.winrate_archon, self.winrate_legend, self.winrate_ancient, self.winrate_divine]
 
 		groupedBar = go.Figure(data=[
 			go.Bar(name='Picks', x=ranks, y=df.iloc[[2,4,6,8,10,12], 1]),
@@ -168,9 +168,11 @@ class Crunchy(Retriever):
 		groupedBar.update_layout(barmode='group')
 		groupedBar.show(renderer = 'browser')
 
-		#Graphhing hero Picks (Line)
+		# -------------Graphing hero Picks (Line)--------------------------------#
 		lineStats = go.Figure(data=
-		                      go.Scatter(x=ranks, y=df.iloc[]))
+		                      go.Scatter(x=ranks, y=winrates)
+		                      )
+		lineStats.show(renderer = 'browser')
 t = Crunchy('Meepo')
 t.call()
 t.win_rates()
