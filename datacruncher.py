@@ -1,4 +1,5 @@
 from datagetter import Retriever
+import plotly.graph_objs as go
 import plotly.express as px
 import numpy as np
 import pandas as pd
@@ -8,7 +9,7 @@ import json
 class Crunchy(Retriever):
 
 	def __init__(self, entry=''):
-		Retriever.__init__(self)
+		Retriever.__init__(self, entry)
 		self.hero = entry.lower()
 		self.isUtility= False
 		self.isFarmer = False
@@ -143,20 +144,24 @@ class Crunchy(Retriever):
 
 	def graph(self):
 
-		#graphing the hero pick data
+		# Graphing Hero Picks
 		self.data = sorted(self.data.items())
 		df = pd.DataFrame.from_dict(self.data, orient='columns')
 		df.columns = ['Picks', 'Results']
 		df = df.iloc[:16]
 		print(df)
 
-		# fig = px.line(self.data, x=""
+		ranks = ['Guardian', 'Crusader', 'Archon', 'Legend', 'Ancient', 'Divine']
 
-		# fig = go.Figure(data=go.Scatter(x=range, y=range**2))
+		groupedBar = go.Figure(data=[
+			go.Bar(name='Picks', x=ranks, y=df.iloc[[2,4,6,8,10,12], 1]),
+			go.Bar(name='Wins', x=ranks, y=df.iloc[[3,5,7,9,11,13], 1])
+		])
 
-		# fig.show(renderer = 'browser')
+		groupedBar.update_layout(barmode='group')
+		groupedBar.show(renderer = 'browser')
 
-t = Crunchy()
+t = Crunchy('Meepo')
 t.call()
 t.win_rates()
 t.get_benchmarks()
