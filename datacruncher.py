@@ -23,14 +23,8 @@ class Crunchy(Retriever):
 		self.call()
 		with open('recent_stats.json') as infile:
 			self.data = json.load(infile)
-		with open ('hero_benchmarks.json') as infile2:
+		with open('hero_benchmarks.json') as infile2:
 			self.benchmark_data = json.load(infile2)
-
-	# def totals(self):
-	# 	for i in self.data:
-	# 		if self.heroID == i['id']:
-	# 			self.totalPicks =  i['1_pick'] + i['2_pick']  + i['3_pick']  + i['4_pick']  + i['5_pick']  + i['6_pick'] + i['7_pick']
-	# 			self.totalWins = i[]
 
 	def win_rates(self):
 
@@ -146,8 +140,8 @@ class Crunchy(Retriever):
 		print("There is a standard deviation of {}".format(gpm_stdev))
 
 	def graph(self):
-
-		df = pd.DataFrame(list(self.data))
+		self.data = sorted(self.data.items())
+		df = pd.DataFrame.from_dict(self.data, orient='columns')
 		print(df)
 
 		range = np.arange(10)

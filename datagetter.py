@@ -40,6 +40,8 @@ class Retriever(object):
 				self.heroID = i['id']
 				print('The hero {} exists! It has an ID Number of {}'.format(self.hero, self.heroID))
 				pass
+
+		#gets daily stats
 		with open('recent_stats.json', 'w') as outfile:
 			data = requests.get('https://api.opendota.com/api/herostats').content
 			loaded = json.loads(data)
