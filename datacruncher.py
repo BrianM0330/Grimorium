@@ -23,6 +23,13 @@ class Crunchy(Retriever):
 		self.win_totals = []
 		self.gpm_totals = []
 
+		self.winrate_guardian = 0
+		self.winrate_crusader = 0
+		self.winrate_archon = 0
+		self.winrate_legend = 0
+		self.winrate_ancient = 0
+		self.winrate_divine = 0
+
 		self.call()
 		with open('recent_stats.json') as infile:
 			self.data = json.load(infile)
@@ -37,35 +44,35 @@ class Crunchy(Retriever):
 				name = i['localized_name']
 				legCount = i['legs']
 
-				winrate_herald = i['1_win'] / i['1_pick']     # herald
+				self.winrate_herald = i['1_win'] / i['1_pick']     # herald
 				self.pick_totals.append( i['1_pick'] )
 				self.win_totals.append( i['1_win'])
 
-				winrate_guardian = i['2_win'] / i['2_pick']     # guardian
+				self.winrate_guardian = i['2_win'] / i['2_pick']     # guardian
 				self.pick_totals.append( i['2_pick'] )
 				self.win_totals.append( i['2_win'])
 
-				winrate_crusader = i['3_win'] / i['3_pick']     # crusader
+				self.winrate_crusader = i['3_win'] / i['3_pick']     # crusader
 				self.pick_totals.append( i['3_pick'] )
 				self.win_totals.append( i['3_win'])
 
-				winrate_archon = i['4_win'] / i['4_pick']     # archon
+				self.winrate_archon = i['4_win'] / i['4_pick']     # archon
 				self.pick_totals.append( i['4_pick'] )
 				self.win_totals.append( i['4_win'])
 
-				winrate_legend = i['5_win'] / i['5_pick']     # legend
+				self.winrate_legend = i['5_win'] / i['5_pick']     # legend
 				self.pick_totals.append( i['5_pick'] )
 				self.win_totals.append( i['5_win'])
 
-				winrate_ancient = i['6_win'] / i['6_pick']     # ancient
+				self.winrate_ancient = i['6_win'] / i['6_pick']     # ancient
 				self.pick_totals.append( i['6_pick'] )
 				self.win_totals.append( i['6_win'])
 
-				winrate_divine = i['7_win'] / i['7_pick']     # divine
+				self.winrate_divine = i['7_win'] / i['7_pick']     # divine
 				self.pick_totals.append( i['7_pick'] )
 				self.win_totals.append( i['7_win'])
 
-				winrate_pro_league = i['pro_win'] / i['pro_pick']     #pro league
+				self.winrate_pro_league = i['pro_win'] / i['pro_pick']     #pro league
 				self.pick_totals.append( i['8_pick'] )
 				self.win_totals.append( i['8_win'])
 
@@ -76,21 +83,21 @@ class Crunchy(Retriever):
 				print( name + '\n' +
 				       "This hero has {} legs, let's see how it performs!".format(legCount) + '\n'
 
-				       + 'Winrate in Herald games:' + '\t' + str(winrate_herald) + '\n'
+				       + 'Winrate in Herald games:' + '\t' + str(self.winrate_herald) + '\n'
 
-				       + 'Winrate in Guardian games:' + '\t' + str(winrate_guardian) + '\n'
+				       + 'Winrate in Guardian games:' + '\t' + str(self.winrate_guardian) + '\n'
 
-				       + 'Winrate in Crusader games:' + '\t' + str(winrate_crusader) + '\n'
+				       + 'Winrate in Crusader games:' + '\t' + str(self.winrate_crusader) + '\n'
 
-				       + 'Winrate in Archon games:' + '\t' + str(winrate_archon) + '\n'
+				       + 'Winrate in Archon games:' + '\t' + str(self.winrate_archon) + '\n'
 
-				       + 'Winrate in Legend games:' + '\t' + str(winrate_legend) + '\n'
+				       + 'Winrate in Legend games:' + '\t' + str(self.winrate_legend) + '\n'
 
-				       + 'Winrate in Ancient games:' + '\t' + str(winrate_ancient) + '\n'
+				       + 'Winrate in Ancient games:' + '\t' + str(self.winrate_ancient) + '\n'
 
-				       + 'Winrate in Divine games:' + '\t' + str(winrate_divine) + '\n'
+				       + 'Winrate in Divine games:' + '\t' + str(self.winrate_divine) + '\n'
 
-				       + 'Winrate in Pro games games:' + '\t' + str(winrate_pro_league)  + '\n'   )
+				       + 'Winrate in Pro games games:' + '\t' + str(self.winrate_pro_league)  + '\n'   )
 
 		print("In {} games, {} has an overall winrate of {} ".format(sum(self.pick_totals), self.hero, sum(self.win_totals)/sum(self.pick_totals)))
 		pass
@@ -144,7 +151,7 @@ class Crunchy(Retriever):
 
 	def graph(self):
 
-		# Graphing Hero Picks
+		# Graphing Hero Picks (Bar)
 		self.data = sorted(self.data.items())
 		df = pd.DataFrame.from_dict(self.data, orient='columns')
 		df.columns = ['Picks', 'Results']
@@ -161,6 +168,9 @@ class Crunchy(Retriever):
 		groupedBar.update_layout(barmode='group')
 		groupedBar.show(renderer = 'browser')
 
+		#Graphhing hero Picks (Line)
+		lineStats = go.Figure(data=
+		                      go.Scatter(x=ranks, y=df.iloc[]))
 t = Crunchy('Meepo')
 t.call()
 t.win_rates()
