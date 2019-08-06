@@ -5,9 +5,8 @@ class Retriever(object):
 	"""This class' main purpose is to initialize a hero with the proper attributes. These
 	attributes are neceessary for analyzing hero data. It also initializes important JSON
 	files containing important values."""
-	def __init__(self, entry='', playerid=0):
+	def __init__(self, entry=''):
 			self.heroDefaults()
-			self.id = playerid
 			self.heroID = 0
 			self.hero = entry.lower()
 			self.roles = []

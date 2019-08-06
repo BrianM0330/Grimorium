@@ -1,13 +1,15 @@
 from datagetter import Retriever
-import plotly.graph_objs as go
+import plotly.express as px
 import numpy as np
 import pandas as pd
 import json
 
+
 class Crunchy(Retriever):
 
-	def __init__(self):
+	def __init__(self, entry=''):
 		Retriever.__init__(self)
+		self.hero = entry.lower()
 		self.isUtility= False
 		self.isFarmer = False
 		self.isGanker = False
@@ -140,11 +142,15 @@ class Crunchy(Retriever):
 		print("There is a standard deviation of {}".format(gpm_stdev))
 
 	def graph(self):
+
+		#graphing the hero pick data
 		self.data = sorted(self.data.items())
 		df = pd.DataFrame.from_dict(self.data, orient='columns')
+		df.columns = ['Picks', 'Results']
+		df = df.iloc[:16]
 		print(df)
 
-		range = np.arange(10)
+		# fig = px.line(self.data, x=""
 
 		# fig = go.Figure(data=go.Scatter(x=range, y=range**2))
 
