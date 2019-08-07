@@ -174,7 +174,27 @@ class Crunchy(Retriever):
 		                      ]
 		                      )
 		lineStats.show(renderer='browser')
-t = Crunchy('Meepo')
+		# ---------------------- Subplot -----------------------------#
+		fig = make_subplots(rows=1, cols=2)
+		fig.add_trace(
+			go.Scatter(x=ranks, y=winrates),
+			row=1, col=1
+		)
+		fig.add_trace(
+			go.Scatter(x=ranks, y=[self.winrate_ratio] * 6, mode='lines'),
+			row=1, col=1
+		)
+		fig.add_trace(
+			go.Bar(name='Picks', x=ranks, y=df.iloc[[2, 4, 6, 8, 10, 12], 1]),
+			row=1, col=2
+		)
+		fig.add_trace(
+			go.Bar(name='Wins', x=ranks, y=df.iloc[[3, 5, 7, 9, 11, 13], 1]),
+			row=1, col=2
+		)
+		fig.update_layout(height=400, width=800, title_text="Test")
+		fig.show(renderer='browser')
+t = Crunchy('Puck')
 t.call()
 t.win_rates()
 t.get_benchmarks()
