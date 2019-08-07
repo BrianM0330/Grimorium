@@ -1,6 +1,6 @@
 from datagetter import Retriever
 import plotly.graph_objs as go
-import plotly.express as px
+from plotly.subplots import make_subplots
 import numpy as np
 import pandas as pd
 import json
@@ -29,6 +29,7 @@ class Crunchy(Retriever):
 		self.winrate_legend = 0
 		self.winrate_ancient = 0
 		self.winrate_divine = 0
+		self.winrate_ratio = 0
 
 		self.call()
 		with open('recent_stats.json') as infile:
@@ -72,12 +73,13 @@ class Crunchy(Retriever):
 				self.pick_totals.append( i['7_pick'] )
 				self.win_totals.append( i['7_win'])
 
-				self.winrate_pro_league = i['pro_win'] / i['pro_pick']     #pro league
+				self.winrate_pro_league = i['pro_win'] / i['pro_pick']  # pro league
 				self.pick_totals.append( i['8_pick'] )
 				self.win_totals.append( i['8_win'])
 
 				self.totalPicks = sum(self.pick_totals)
 				self.totalWins = sum(self.win_totals)
+				self.winrate_ratio = self.totalWins/self.totalPicks
 				pass
 
 				print( name + '\n' +
@@ -99,7 +101,7 @@ class Crunchy(Retriever):
 
 				       + 'Winrate in Pro games games:' + '\t' + str(self.winrate_pro_league)  + '\n'   )
 
-		print("In {} games, {} has an overall winrate of {} ".format(sum(self.pick_totals), self.hero, sum(self.win_totals)/sum(self.pick_totals)))
+		print("In {} games, {} has an overall winrate of {} ".format(sum(self.pick_totals), self.hero, self.winrate_ratio))
 		pass
 
 	def get_benchmarks(self):
@@ -151,28 +153,27 @@ class Crunchy(Retriever):
 
 	def graph(self):
 		# --------------------Graphing Hero Picks (Bar)-----------------------------#
-		self.data = sorted(self.data.items())
+		self.data = sorted(self.data.items())  # sorting the json entries
 		df = pd.DataFrame.from_dict(self.data, orient='columns')
 		df.columns = ['Picks', 'Results']
 		df = df.iloc[:16]
 		print(df)
 
 		ranks = ['Guardian', 'Crusader', 'Archon', 'Legend', 'Ancient', 'Divine']
-		winrates = [self.winrate_guardian, self.winrate_crusader, self.winrate_archon, self.winrate_legend, self.winrate_ancient, self.winrate_divine]
-
 		groupedBar = go.Figure(data=[
-			go.Bar(name='Picks', x=ranks, y=df.iloc[[2,4,6,8,10,12], 1]),
-			go.Bar(name='Wins', x=ranks, y=df.iloc[[3,5,7,9,11,13], 1])
+			go.Bar(name='Picks', x=ranks, y=df.iloc[[2, 4, 6, 8, 10, 12], 1]),
+			go.Bar(name='Wins', x=ranks, y=df.iloc[[3, 5, 7, 9, 11, 13], 1])
 		])
-
 		groupedBar.update_layout(barmode='group')
-		groupedBar.show(renderer = 'browser')
-
-		# -------------Graphing hero Picks (Line)--------------------------------#
-		lineStats = go.Figure(data=
-		                      go.Scatter(x=ranks, y=winrates)
+		groupedBar.show(renderer='browser')
+		# -------------Graphing hero W/L (Line)--------------------------------#
+		winrates = [self.winrate_guardian, self.winrate_crusader, self.winrate_archon, self.winrate_legend, self.winrate_ancient, self.winrate_divine]
+		lineStats = go.Figure(data=[
+		                      go.Scatter(x=ranks, y=winrates),
+		                      go.Scatter(x=ranks, y=[self.winrate_ratio]*6)
+		                      ]
 		                      )
-		lineStats.show(renderer = 'browser')
+		lineStats.show(renderer='browser')
 t = Crunchy('Meepo')
 t.call()
 t.win_rates()
