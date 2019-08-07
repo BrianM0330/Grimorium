@@ -160,9 +160,12 @@ class Crunchy(Retriever):
 		print(df)
 
 		ranks = ['Guardian', 'Crusader', 'Archon', 'Legend', 'Ancient', 'Divine']
+		picks = df.iloc[[2, 4, 6, 8, 10, 12], 1]
+		wins = df.iloc[[3, 5, 7, 9, 11, 13], 1]
+
 		groupedBar = go.Figure(data=[
-			go.Bar(name='Picks', x=ranks, y=df.iloc[[2, 4, 6, 8, 10, 12], 1]),
-			go.Bar(name='Wins', x=ranks, y=df.iloc[[3, 5, 7, 9, 11, 13], 1])
+			go.Bar(name='Picks', x=ranks, y=picks),
+			go.Bar(name='Wins', x=ranks, y=wins)
 		])
 		groupedBar.update_layout(barmode='group')
 		groupedBar.show(renderer='browser')
@@ -175,7 +178,7 @@ class Crunchy(Retriever):
 		                      )
 		lineStats.show(renderer='browser')
 		# ---------------------- Subplot -----------------------------#
-		fig = make_subplots(rows=1, cols=2)
+		fig = make_subplots(rows=1, cols=3)
 		fig.add_trace(
 			go.Scatter(x=ranks, y=winrates),
 			row=1, col=1
@@ -185,14 +188,18 @@ class Crunchy(Retriever):
 			row=1, col=1
 		)
 		fig.add_trace(
-			go.Bar(name='Picks', x=ranks, y=df.iloc[[2, 4, 6, 8, 10, 12], 1]),
+			go.Bar(name='Picks', x=ranks, y=picks),
 			row=1, col=2
 		)
 		fig.add_trace(
-			go.Bar(name='Wins', x=ranks, y=df.iloc[[3, 5, 7, 9, 11, 13], 1]),
-			row=1, col=2
+			go.Bar(name='Wins', x=ranks, y=wins),
+			row=1, col=3
 		)
-		fig.update_layout(height=400, width=800, title_text="Test")
+		fig.add_trace(
+			go.Histogram(x=picks, name='test'),
+			row=1, col=3
+		)
+		fig.update_layout(height=800, width=1200, title_text="Test")
 		fig.show(renderer='browser')
 t = Crunchy('Puck')
 t.call()
