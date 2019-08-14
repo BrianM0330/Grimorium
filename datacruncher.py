@@ -215,11 +215,12 @@ class Crunchy(Retriever):
 		df = pd.concat([df.iloc[3:5], df.iloc[8:24]])
 		primary_attribute = df.iloc[0][0]
 
-		starting_mana = df.loc['base_mana']['Values'] + ( df.loc['base_int']['Values'] * 12)# 12 mana per 1 point of int
+		starting_mana = df.loc['base_mana']['Values'] + (
+					df.loc['base_int']['Values'] * 12)  # 12 mana per 1 point of int
 		base_stat_low = df.loc['base_attack_min']['Values']
 		base_stat_high = df.loc['base_attack_max']['Values']
 		# calculations based on the hero's starting values
-		#priority 1 and 2 heroes
+		# priority 1 and 2 heroes
 		if 'Carry' or '2nd_Core' in self.roles:
 			if primary_attribute == 'agi':
 				base_attribute_bonus = df.loc['base_agi']['Values']
@@ -231,13 +232,13 @@ class Crunchy(Retriever):
 				base_attribute_bonus = df.loc['base_int']['Values']
 				starting_damage = (base_stat_high + base_stat_low) / 2 + base_attribute_bonus
 
-			# suggestions based on the hero's role and numbers
+		# suggestions based on the hero's role and numbers
 		if df.loc['attack_type']['Values'] == 'Melee' and starting_damage <= 45:
 			likes_quelling_blade = True
-			# mana suggestions
-		# if primary_attribute != 'int':
-
-
+		# mana suggestions
+		if primary_attribute != 'int':
+			if starting_mana <= 300:  # need to add intgain condition
+				likes_mana_items = True
 
 t = Crunchy('Wraith King')
 t.call()
