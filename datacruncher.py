@@ -195,25 +195,24 @@ class Crunchy(Retriever):
 		fig.show(renderer='browser')
 
 	def helper(self):
-		self.isUtility= False
-		self.isFarmer = False
-		self.isGanker = False
-
 		self.lowHP = False
 		self.lowMana = False
 		self.lowArmor = False
+		likes_quelling_blade = False
 		starting_damage = 0
 
 		#create dataframe for desired values
 		df = pd.DataFrame.from_dict(self.data, orient='index')
 		df.columns = ['Values']
-		df = pd.concat([df.iloc[3:4], df.iloc[8:24]])
+		df = pd.concat([df.iloc[3:5], df.iloc[8:24]])
 		primary_attribute = df.iloc[0][0]
 
 		#priority 1 heroes
 		base_stat_low = df.loc['base_attack_min']['Values']
 		base_stat_high = df.loc['base_attack_max']['Values']
 		if 'Carry' in self.roles:
+			if df.loc['attack_type']['Values'] == 'Melee':
+				likes_quelling_blade = True
 			if primary_attribute == 'agi':
 				base_attribute_bonus = df.loc['base_agi']['Values']
 				starting_damage = (base_stat_high + base_stat_low)/2 + base_attribute_bonus
@@ -226,7 +225,7 @@ class Crunchy(Retriever):
 
 		print(starting_damage)
 
-t = Crunchy('Terrorblade')
+t = Crunchy('Wraith King')
 t.call()
 t.win_rates()
 t.get_benchmarks()
