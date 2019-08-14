@@ -608,7 +608,7 @@
   },
   {
     "id": 42,
-    "name": "npc_dota_hero_skeleton_king",
+    "name": "npc_dota_hero_wraith_king",
     "localized_name": "Wraith King",
     "primary_attr": "str",
     "attack_type": "Melee",
