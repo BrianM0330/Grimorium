@@ -11,14 +11,6 @@ class Crunchy(Retriever):
 	def __init__(self, entry=''):
 		Retriever.__init__(self, entry)
 		self.hero = entry.lower()
-		self.isUtility= False
-		self.isFarmer = False
-		self.isGanker = False
-
-		self.lowHP = False
-		self.lowMana = False
-		self.lowArmor = False
-
 		self.pick_totals = []
 		self.win_totals = []
 		self.gpm_totals = []
@@ -201,8 +193,42 @@ class Crunchy(Retriever):
 		)
 		fig.update_layout(height=800, width=1200, title_text="Test")
 		fig.show(renderer='browser')
-t = Crunchy('Puck')
+
+	def helper(self):
+		self.isUtility= False
+		self.isFarmer = False
+		self.isGanker = False
+
+		self.lowHP = False
+		self.lowMana = False
+		self.lowArmor = False
+		starting_damage = 0
+
+		#create dataframe for desired values
+		df = pd.DataFrame.from_dict(self.data, orient='index')
+		df.columns = ['Values']
+		df = pd.concat([df.iloc[3:4], df.iloc[8:24]])
+		primary_attribute = df.iloc[0][0]
+
+		#priority 1 heroes
+		base_stat_low = df.loc['base_attack_min']['Values']
+		base_stat_high = df.loc['base_attack_max']['Values']
+		if 'Carry' in self.roles:
+			if primary_attribute == 'agi':
+				base_attribute_bonus = df.loc['base_agi']['Values']
+				starting_damage = (base_stat_high + base_stat_low)/2 + base_attribute_bonus
+			elif primary_attribute == 'str':
+				base_attribute_bonus = df.loc['base_str']['Values']
+				starting_damage = (base_stat_high + base_stat_low)/2 + base_attribute_bonus
+			else: #int priority 1 hero
+				base_attribute_bonus = df.loc['base_int']['Values']
+				starting_damage = (base_stat_high + base_stat_low)/2 + base_attribute_bonus
+
+		print(starting_damage)
+
+t = Crunchy('Terrorblade')
 t.call()
 t.win_rates()
 t.get_benchmarks()
-t.graph()
+# t.graph()
+t.helper()
