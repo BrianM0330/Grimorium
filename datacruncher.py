@@ -141,6 +141,8 @@ class Crunchy(Retriever):
 				gpm_percentile99 = i['value']
 				self.gpm_totals.append(i['value'])
 
+		# for i in self.benchmark_data['result']['lhten']:
+		middle_percentile_lh10 = list(self.benchmark_data['result']['lhten'])[4]['value']
 		print("On average expect to get a GPM of {}. On a good game {} and on a bad one {}".format(gpm_percentile50,
 		                                                                                           gpm_percentile99,
 		                                                                                           gpm_percentile10))
@@ -220,17 +222,15 @@ class Crunchy(Retriever):
 		base_stat_low = df.loc['base_attack_min']['Values']
 		base_stat_high = df.loc['base_attack_max']['Values']
 		# calculations based on the hero's starting values
-		# priority 1 and 2 heroes
-		if 'Carry' or '2nd_Core' in self.roles:
-			if primary_attribute == 'agi':
-				base_attribute_bonus = df.loc['base_agi']['Values']
-				starting_damage = (base_stat_high + base_stat_low) / 2 + base_attribute_bonus
-			elif primary_attribute == 'str':
-				base_attribute_bonus = df.loc['base_str']['Values']
-				starting_damage = (base_stat_high + base_stat_low) / 2 + base_attribute_bonus
-			else:  # int priority 1 hero
-				base_attribute_bonus = df.loc['base_int']['Values']
-				starting_damage = (base_stat_high + base_stat_low) / 2 + base_attribute_bonus
+		if primary_attribute == 'agi':
+			base_attribute_bonus = df.loc['base_agi']['Values']
+			starting_damage = (base_stat_high + base_stat_low) / 2 + base_attribute_bonus
+		elif primary_attribute == 'str':
+			base_attribute_bonus = df.loc['base_str']['Values']
+			starting_damage = (base_stat_high + base_stat_low) / 2 + base_attribute_bonus
+		else:  # int priority 1 hero
+			base_attribute_bonus = df.loc['base_int']['Values']
+			starting_damage = (base_stat_high + base_stat_low) / 2 + base_attribute_bonus
 
 		# suggestions based on the hero's role and numbers
 		if df.loc['attack_type']['Values'] == 'Melee' and starting_damage <= 45:
@@ -240,7 +240,7 @@ class Crunchy(Retriever):
 			if starting_mana <= 300:  # need to add intgain condition
 				likes_mana_items = True
 
-t = Crunchy('Wraith King')
+t = Crunchy('Pangolier')
 t.call()
 t.win_rates()
 t.get_benchmarks()
