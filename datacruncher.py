@@ -141,8 +141,8 @@ class Crunchy(Retriever):
 				gpm_percentile99 = i['value']
 				self.gpm_totals.append(i['value'])
 
-		# for i in self.benchmark_data['result']['lhten']:
 		middle_percentile_lh10 = list(self.benchmark_data['result']['lhten'])[4]['value']
+
 		print("On average expect to get a GPM of {}. On a good game {} and on a bad one {}".format(gpm_percentile50,
 		                                                                                           gpm_percentile99,
 		                                                                                           gpm_percentile10))
@@ -205,8 +205,9 @@ class Crunchy(Retriever):
 		self.lowMana = False
 		self.lowArmor = False
 		likes_quelling_blade = False
-		likes_mana_items = False
+		mana_item = ''
 		has_hard_start = False
+		isCore = False
 
 		starting_damage = 0
 		starting_mana = 0
@@ -222,25 +223,33 @@ class Crunchy(Retriever):
 		base_stat_low = df.loc['base_attack_min']['Values']
 		base_stat_high = df.loc['base_attack_max']['Values']
 		# calculations based on the hero's starting values
-		if primary_attribute == 'agi':
-			base_attribute_bonus = df.loc['base_agi']['Values']
-			starting_damage = (base_stat_high + base_stat_low) / 2 + base_attribute_bonus
-		elif primary_attribute == 'str':
-			base_attribute_bonus = df.loc['base_str']['Values']
-			starting_damage = (base_stat_high + base_stat_low) / 2 + base_attribute_bonus
-		else:  # int priority 1 hero
-			base_attribute_bonus = df.loc['base_int']['Values']
-			starting_damage = (base_stat_high + base_stat_low) / 2 + base_attribute_bonus
+		if 'Carry' or '2nd_Core' or 'Offlane' in self.roles: # starting damage only relevant for core heroes
+			isCore = True
+			if primary_attribute == 'agi':
+				base_attribute_bonus = df.loc['base_agi']['Values']
+				starting_damage = (base_stat_high + base_stat_low) / 2 + base_attribute_bonus
+			elif primary_attribute == 'str':
+				base_attribute_bonus = df.loc['base_str']['Values']
+				starting_damage = (base_stat_high + base_stat_low) / 2 + base_attribute_bonus
+			else:  # int priority 1 hero
+				base_attribute_bonus = df.loc['base_int']['Values']
+				starting_damage = (base_stat_high + base_stat_low) / 2 + base_attribute_bonus
 
 		# suggestions based on the hero's role and numbers
-		if df.loc['attack_type']['Values'] == 'Melee' and starting_damage <= 45:
+		if df.loc['attack_type']['Values'] == 'Melee' and starting_damage <= 45 and isCore:
 			likes_quelling_blade = True
-		# mana suggestions
-		if primary_attribute != 'int':
-			if starting_mana <= 300:  # need to add intgain condition
-				likes_mana_items = True
+		# mana suggestions for heroes based on their attributes and roles
+		if primary_attribute == str:
+				if 'Carry' in self.roles:
+					mana_item = 'Mango or Clarity'
+				elif 'Offlane' or '2nd_Core' or '' in self.roles:
+					mana_item = 'Soul ring'
+				elif '2nd_Supp' or 'Playmaker_Supp':
+					mana_item = 'Clarity or Soul Ring'
 
-t = Crunchy('Pangolier')
+
+
+t = Crunchy('Drow')
 t.call()
 t.win_rates()
 t.get_benchmarks()
