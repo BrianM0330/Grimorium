@@ -249,6 +249,29 @@ class Crunchy(Retriever):
 				elif '2nd_Supp' or 'Playmaker_Supp':
 					mana_item = 'Clarity or Soul Ring'
 
+		# ---- guide parser ---- #
+		url = 'https://steamcommunity.com/sharedfiles/filedetails/?id=1468098842'
+
+		suggested_item_phases = []
+		suggested_item_names = []
+		suggested_items = {}
+
+		soup = BeautifulSoup(requests.get(url).content, 'html.parser')
+
+		guide_html = requests.get(soup.find("iframe")["src"])
+		guide_soup = BeautifulSoup(guide_html.content, 'html.parser')
+
+		item_build_soup = guide_soup.find_all('div', {'class': 'itemBuildContainer'})
+
+		list_index = -1
+		for section in item_build_soup:
+			list_index += 1
+			suggested_item_names.append([])
+			suggested_item_phases.append(section.text)
+			for i in section.contents[1].contents[1].contents:
+				item = i.attrs['itemname']
+				print(item)
+				suggested_item_names[list_index].append(item)
 
 
 t = Crunchy('Drow')
