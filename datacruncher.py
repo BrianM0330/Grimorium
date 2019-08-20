@@ -229,7 +229,6 @@ class Crunchy(Retriever):
 			else:  # int priority 1 hero
 				base_attribute_bonus = df.loc['base_int']['Values']
 				starting_damage = (base_stat_high + base_stat_low) / 2 + base_attribute_bonus
-
 		# suggestions based on the hero's role and numbers
 		if df.loc['attack_type']['Values'] == 'Melee' and starting_damage <= 45 and isCore:
 			likes_quelling_blade = True
