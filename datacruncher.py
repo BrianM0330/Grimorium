@@ -4,6 +4,8 @@ from plotly.subplots import make_subplots
 import numpy as np
 import pandas as pd
 import json
+from bs4 import BeautifulSoup
+import requests
 
 
 class Crunchy(Retriever):
