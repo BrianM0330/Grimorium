@@ -406,6 +406,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
+      "Offlane",
       "2nd_Supp",
       "Carry",
       "Durable",
