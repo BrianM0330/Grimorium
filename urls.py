@@ -1,8 +1,8 @@
 core_guides = {
 	'alchemist': 'https://steamcommunity.com/sharedfiles/filedetails/?id=1468038515',
 	'ursa': 'https://steamcommunity.com/sharedfiles/filedetails/?id=1468077737',
-	'windranger_mid': 'https://steamcommunity.com/sharedfiles/filedetails/?id=1780567951',
-	'skywrath_mid': 'https://steamcommunity.com/sharedfiles/filedetails/?id=1683022981',
+	'windranger': 'https://steamcommunity.com/sharedfiles/filedetails/?id=1780567951',
+	'skywrath': 'https://steamcommunity.com/sharedfiles/filedetails/?id=1683022981',
 	'naga_siren': 'https://steamcommunity.com/sharedfiles/filedetails/?id=1594479556',
 	'rubick_mid': 'https://steamcommunity.com/sharedfiles/filedetails/?id=1579152407',
 	'lone_druid': 'https://steamcommunity.com/sharedfiles/filedetails/?id=1569740671',
@@ -69,6 +69,7 @@ core_guides = {
 }
 
 support_guides = {
+	'omniknight': 'https://steamcommunity.com/sharedfiles/filedetails/?id=1468048726',
 	'naga': 'https://steamcommunity.com/sharedfiles/filedetails/?id=1468068925',
 	'vengeful_spirit': 'https://steamcommunity.com/sharedfiles/filedetails/?id=1468078324',
 	'riki': 'https://steamcommunity.com/sharedfiles/filedetails/?id=1468073086',
