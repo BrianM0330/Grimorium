@@ -4,6 +4,7 @@ from plotly.subplots import make_subplots
 import numpy as np
 import pandas as pd
 import json
+import urls
 from bs4 import BeautifulSoup
 import requests
 
@@ -13,6 +14,7 @@ class Crunchy(Retriever):
 	def __init__(self, entry=''):
 		Retriever.__init__(self, entry)
 		self.hero = entry.lower()
+		self.url = ''
 		self.pick_totals = []
 		self.win_totals = []
 		self.gpm_totals = []
@@ -37,7 +39,7 @@ class Crunchy(Retriever):
 			if self.heroID == i['id']:
 				self.data = i  # makes data the hero dictionary
 				name = i['localized_name']
-				legCount = i['legs']
+				leg_count = i['legs']
 
 				self.winrate_herald = i['1_win'] / i['1_pick']  # herald
 				self.pick_totals.append(i['1_pick'])
@@ -77,7 +79,7 @@ class Crunchy(Retriever):
 				pass
 
 				print(name + '\n' +
-				      "This hero has {} legs, let's see how it performs!".format(legCount) + '\n'
+				      "This hero has {} legs, let's see how it performs!".format(leg_count) + '\n'
 
 				      + 'Winrate in Herald games:' + '\t' + str(self.winrate_herald) + '\n'
 
@@ -203,16 +205,7 @@ class Crunchy(Retriever):
 		fig.show(renderer='browser')
 
 	def helper(self):
-		self.lowHP = False
-		self.lowMana = False
-		self.lowArmor = False
-		likes_quelling_blade = False
-		mana_item = ''
-		has_hard_start = False
-		isCore = False
-
 		starting_damage = 0
-		starting_mana = 0
 
 		# create dataframe for desired values
 		df = pd.DataFrame.from_dict(self.data, orient='index')
@@ -221,11 +214,11 @@ class Crunchy(Retriever):
 		primary_attribute = df.iloc[0][0]
 
 		starting_mana = df.loc['base_mana']['Values'] + (
-					df.loc['base_int']['Values'] * 12)  # 12 mana per 1 point of int
+				df.loc['base_int']['Values'] * 12)  # 12 mana per 1 point of int
 		base_stat_low = df.loc['base_attack_min']['Values']
 		base_stat_high = df.loc['base_attack_max']['Values']
 		# calculations based on the hero's starting values
-		if 'Carry' or '2nd_Core' or 'Offlane' in self.roles: # starting damage only relevant for core heroes
+		if 'Carry' or '2nd_Core' or 'Offlane' in self.roles:  # starting damage only relevant for core heroes
 			isCore = True
 			if primary_attribute == 'agi':
 				base_attribute_bonus = df.loc['base_agi']['Values']
@@ -240,23 +233,30 @@ class Crunchy(Retriever):
 		# suggestions based on the hero's role and numbers
 		if df.loc['attack_type']['Values'] == 'Melee' and starting_damage <= 45 and isCore:
 			likes_quelling_blade = True
-		# mana suggestions for heroes based on their attributes and roles
-		if primary_attribute == str:
-				if 'Carry' in self.roles:
-					mana_item = 'Mango or Clarity'
-				elif 'Offlane' or '2nd_Core' or '' in self.roles:
-					mana_item = 'Soul ring'
-				elif '2nd_Supp' or 'Playmaker_Supp':
-					mana_item = 'Clarity or Soul Ring'
 
-		# ---- guide parser ---- #
-		url = 'https://steamcommunity.com/sharedfiles/filedetails/?id=1468098842'
+	def guide_parser(self):
+		# looks for hero and its role and matches it to a guide URL
+		if 'Carry' in self.roles:
+			for key in urls.core_guides:
+				if self.hero.lower() in key.lower():
+					self.url = urls.core_guides[key]
+		elif '2nd_Core' in self.roles:
+			for key in urls.core_guides:
+				if self.hero.lower() in key.lower():
+					self.url = urls.core_guides[key]
+		elif 'Support' or '2nd_Supp' or 'Lane_Supp' in self.roles:
+			for key in urls.support_guides:
+				if self.hero.lower() in key.lower():
+					self.url = urls.support_guides[key]
+		else: # offlane
+			for key in urls.offlane_guides:
+				if self.hero.lower() in key.lower():
+					self.url = urls.offlane_guides[key]
 
 		suggested_item_phases = []
 		suggested_item_names = []
-		suggested_items = {}
 
-		soup = BeautifulSoup(requests.get(url).content, 'html.parser')
+		soup = BeautifulSoup(requests.get(self.url).content, 'html.parser')
 
 		guide_html = requests.get(soup.find("iframe")["src"])
 		guide_soup = BeautifulSoup(guide_html.content, 'html.parser')
@@ -270,13 +270,17 @@ class Crunchy(Retriever):
 			suggested_item_phases.append(section.text)
 			for i in section.contents[1].contents[1].contents:
 				item = i.attrs['itemname']
-				print(item)
 				suggested_item_names[list_index].append(item)
+		suggested_items = dict(zip(suggested_item_phases, suggested_item_names))
+		for item in suggested_items:
+			print(item, suggested_items[item], end='\n')
+		return suggested_items
 
 
-t = Crunchy('Drow')
+t = Crunchy('Terrorblade')
 t.call()
 t.win_rates()
 t.get_benchmarks()
 # t.graph()
 t.helper()
+t.guide_parser()
