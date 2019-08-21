@@ -11,9 +11,8 @@ import requests
 
 class Crunchy(Retriever):
 
-	def __init__(self, entry=''):
-		Retriever.__init__(self, entry)
-		self.hero = entry.lower()
+	def __init__(self):
+		Retriever.__init__(self)
 		self.url = ''
 		self.pick_totals = []
 		self.win_totals = []
@@ -27,11 +26,14 @@ class Crunchy(Retriever):
 		self.winrate_divine = 0
 		self.winrate_ratio = 0
 
-		self.call()
 		with open('recent_stats.json') as infile:
 			self.data = json.load(infile)
 		with open('hero_benchmarks.json') as infile2:
 			self.benchmark_data = json.load(infile2)
+		self.call()
+		self.win_rates()
+		self.get_benchmarks()
+		self.helper()
 
 	def win_rates(self):
 		""" This program goes through the JSON data and gathers data on the individual hero's pick and win statistics.
@@ -78,7 +80,7 @@ class Crunchy(Retriever):
 				self.totalPicks = sum(self.pick_totals)
 				self.totalWins = sum(self.win_totals)
 				self.winrate_ratio = self.totalWins / self.totalPicks
-				pass
+				# pass
 
 				print(name + '\n' +
 				      "This hero has {} legs, let's see how it performs!".format(leg_count) + '\n'
@@ -98,10 +100,11 @@ class Crunchy(Retriever):
 				      + 'Winrate in Divine games:' + '\t' + str(self.winrate_divine) + '\n'
 
 				      + 'Winrate in Pro games games:' + '\t' + str(self.winrate_pro_league) + '\n')
+				break
 
 		print("In {} games, {} has an overall winrate of {} ".format(sum(self.pick_totals), self.hero,
 		                                                             self.winrate_ratio))
-		pass
+		# pass
 
 	def get_benchmarks(self):
 		"""Goes through hero_benchmarks.json which contains a hero's benchmarks on Gold per Minute (GPM) and
@@ -121,7 +124,6 @@ class Crunchy(Retriever):
 		lh10_stdev = 0
 
 		for i in self.benchmark_data['result']['gold_per_min']:
-			gpm_stdev = np.std(self.gpm_totals)
 
 			if i['percentile'] == 0.1:
 				gpm_percentile10 = i['value']
@@ -150,6 +152,7 @@ class Crunchy(Retriever):
 			if i['percentile'] == 0.99:
 				gpm_percentile99 = i['value']
 				self.gpm_totals.append(i['value'])
+		gpm_stdev = np.std(self.gpm_totals)
 
 		middle_percentile_lh10 = list(self.benchmark_data['result']['lhten'])[4]['value']
 
@@ -157,61 +160,6 @@ class Crunchy(Retriever):
 		                                                                                           gpm_percentile99,
 		                                                                                           gpm_percentile10))
 		print("There is a standard deviation of {}".format(gpm_stdev))
-
-	def graph(self):
-		"""This method organizes the data into Pandas dataframes and outputs it using Plotly."""
-
-		# --------------------Dataframe------------------- #
-		self.data = sorted(self.data.items())  # sorting the json entries
-		df = pd.DataFrame.from_dict(self.data, orient='columns')
-		df.columns = ['Picks', 'Results']
-		df = df.iloc[:16]
-
-		ranks = ['Guardian', 'Crusader', 'Archon', 'Legend', 'Ancient', 'Divine']
-		picks = df.iloc[[2, 4, 6, 8, 10, 12], 1]
-		wins = df.iloc[[3, 5, 7, 9, 11, 13], 1]
-
-		winrates = [self.winrate_guardian, self.winrate_crusader, self.winrate_archon, self.winrate_legend,
-		            self.winrate_ancient, self.winrate_divine]
-
-		# -----------------------------Graphing Hero Picks (Bar)-----------------------------#
-		# grouped_bar = go.Figure(data=[
-		# 	go.Bar(name='Picks', x=ranks, y=picks),
-		# 	go.Bar(name='Wins', x=ranks, y=wins)
-		# ])
-		# grouped_bar.update_layout(barmode='group')
-		# grouped_bar.show(renderer='browser')
-
-		# -----------------------------Graphing  hero W/L (Line)--------------------------------#
-		# line_stats = go.Figure(data=[
-		# 	go.Scatter(x=ranks, y=winrates),
-		# 	go.Scatter(x=ranks, y=[self.winrate_ratio] * 6)
-		# ]
-		# )
-		# line_stats.show(renderer='browser')
-
-
-
-		# ---------------------- Subplot -----------------------------#
-		fig = make_subplots(rows=1, cols=3)
-		fig.add_trace(
-			go.Scatter(x=ranks, y=winrates),
-			row=1, col=1
-		)
-		fig.add_trace(
-			go.Scatter(x=ranks, y=[self.winrate_ratio] * 6, mode='lines'),
-			row=1, col=1
-		)
-		fig.add_trace(
-			go.Bar(name='Picks', x=ranks, y=picks),
-			row=1, col=2
-		)
-		fig.add_trace(
-			go.Bar(name='Wins', x=ranks, y=wins),
-			row=1, col=2
-		)
-		fig.update_layout(height=1080, width=1920, title_text="Test")
-		fig.show(renderer='browser')
 
 	def helper(self):
 		starting_damage = 0
@@ -241,6 +189,7 @@ class Crunchy(Retriever):
 		# suggestions based on the hero's role and numbers
 		if df.loc['attack_type']['Values'] == 'Melee' and starting_damage <= 45 and isCore:
 			likes_quelling_blade = True
+		self.guide_parser()
 
 	def guide_parser(self):
 		# looks for hero and its role and matches it to a guide URL
@@ -252,14 +201,14 @@ class Crunchy(Retriever):
 			for key in urls.core_guides:
 				if self.hero.lower() in key.lower():
 					self.url = urls.core_guides[key]
+		elif 'Offlane' in self.roles:
+			for key in urls.offlane_guides:
+				if self.hero.lower() in key.lower():
+					self.url = urls.offlane_guides[key]
 		elif 'Support' or '2nd_Supp' or 'Lane_Supp' in self.roles:
 			for key in urls.support_guides:
 				if self.hero.lower() in key.lower():
 					self.url = urls.support_guides[key]
-		else: # offlane
-			for key in urls.offlane_guides:
-				if self.hero.lower() in key.lower():
-					self.url = urls.offlane_guides[key]
 
 		suggested_item_phases = []
 		suggested_item_names = []
@@ -281,13 +230,77 @@ class Crunchy(Retriever):
 				suggested_item_names[list_index].append(item)
 		suggested_items = dict(zip(suggested_item_phases, suggested_item_names))
 		for item in suggested_items:
-			print(item, suggested_items[item], end='\n')
+			print(item, suggested_items[item], end='\n\n')
+		print('---------------------------------------------------------------------------------------')
+		self.do_graphs()
 		return suggested_items
+
+	def do_graphs(self):
+		"""This method organizes the data into Pandas dataframes and outputs it using Plotly."""
+
+		do = input("If you would like to see visualizations of {}'s W/L ratio and pick rates \t\t\t 1 \n\n"
+		           "If you would like to get statistics for another hero \t\t\t\t\t\t\t\t\t 2 \n\n "
+		           "To exit the program press ENTER".format(self.hero))
+		if do == '1':
+			# --------------------Dataframe------------------- #
+			if do == "Y":
+				self.data = sorted(self.data.items())  # sorting the json entries
+				df = pd.DataFrame.from_dict(self.data, orient='columns')
+				df.columns = ['Picks', 'Results']
+				df = df.iloc[:16]
+
+				ranks = ['Guardian', 'Crusader', 'Archon', 'Legend', 'Ancient', 'Divine']
+				picks = df.iloc[[2, 4, 6, 8, 10, 12], 1]
+				wins = df.iloc[[3, 5, 7, 9, 11, 13], 1]
+
+				winrates = [self.winrate_guardian, self.winrate_crusader, self.winrate_archon, self.winrate_legend,
+				            self.winrate_ancient, self.winrate_divine]
+			else:
+				return
+
+			# -----------------------------Graphing Hero Picks (Bar)-----------------------------#
+			# grouped_bar = go.Figure(data=[
+			# 	go.Bar(name='Picks', x=ranks, y=picks),
+			# 	go.Bar(name='Wins', x=ranks, y=wins)
+			# ])
+			# grouped_bar.update_layout(barmode='group')
+			# grouped_bar.show(renderer='browser')
+
+			# -----------------------------Graphing  hero W/L (Line)--------------------------------#
+			# line_stats = go.Figure(data=[
+			# 	go.Scatter(x=ranks, y=winrates),
+			# 	go.Scatter(x=ranks, y=[self.winrate_ratio] * 6)
+			# ]
+			# )
+			# line_stats.show(renderer='browser')
+
+
+
+			# ---------------------- Subplot -----------------------------#
+			fig = make_subplots(rows=1, cols=3)
+			fig.add_trace(
+				go.Scatter(x=ranks, y=winrates),
+				row=1, col=1
+			)
+			fig.add_trace(
+				go.Scatter(x=ranks, y=[self.winrate_ratio] * 6, mode='lines'),
+				row=1, col=1
+			)
+			fig.add_trace(
+				go.Bar(name='Picks', x=ranks, y=picks),
+				row=1, col=2
+			)
+			fig.add_trace(
+				go.Bar(name='Wins', x=ranks, y=wins),
+				row=1, col=2
+			)
+			fig.update_layout(height=1080, width=1920, title_text="Test")
+			fig.show(renderer='browser')
+
+		elif do == '2':
+			self.__init__()
+		else:
+			exit()
 
 
 t = Crunchy()
-t.call()
-t.win_rates()
-t.get_benchmarks()
-t.helper()
-t.guide_parser()
