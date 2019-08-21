@@ -126,7 +126,6 @@
     "attack_type": "Ranged",
     "roles": [
       "2nd_Supp",
-      "2nd_Core",
       "Carry",
       "Support",
       "Escape",
@@ -153,7 +152,7 @@
   },
   {
     "id": 11,
-    "name": "npc_dota_hero_nevermore",
+    "name": "npc_dota_hero_shadow_fiend",
     "localized_name": "Shadow Fiend",
     "primary_attr": "agi",
     "attack_type": "Ranged",
@@ -309,6 +308,22 @@
   {
     "id": 21,
     "name": "npc_dota_hero_windrunner",
+    "localized_name": "Windranger",
+    "primary_attr": "int",
+    "attack_type": "Ranged",
+    "roles": [
+      "Playmaker",
+      "Carry",
+      "Support",
+      "Disabler",
+      "Escape",
+      "Nuker"
+    ],
+    "legs": 2
+  },
+  {
+    "id": 21,
+    "name": "npc_dota_hero_windranger",
     "localized_name": "Windranger",
     "primary_attr": "int",
     "attack_type": "Ranged",
@@ -532,6 +547,21 @@
     ],
     "legs": 2
   },
+    {
+    "id": 36,
+    "name": "npc_dota_hero_necrophos",
+    "localized_name": "Necrophos",
+    "primary_attr": "int",
+    "attack_type": "Ranged",
+    "roles": [
+      "2nd_Core",
+      "Carry",
+      "Nuker",
+      "Durable",
+      "Disabler"
+    ],
+    "legs": 2
+  },
   {
     "id": 37,
     "name": "npc_dota_hero_warlock",
@@ -564,6 +594,20 @@
   {
     "id": 39,
     "name": "npc_dota_hero_queenofpain",
+    "localized_name": "Queen of Pain",
+    "primary_attr": "int",
+    "attack_type": "Ranged",
+    "roles": [
+      "Playmaker_Mid",
+      "Carry",
+      "Nuker",
+      "Escape"
+    ],
+    "legs": 2
+  },
+    {
+    "id": 39,
+    "name": "npc_dota_hero_queen_of_pain",
     "localized_name": "Queen of Pain",
     "primary_attr": "int",
     "attack_type": "Ranged",
@@ -755,6 +799,21 @@
     ],
     "legs": 2
   },
+    {
+    "id": 51,
+    "name": "npc_dota_hero_clockwork",
+    "localized_name": "Clockwerk",
+    "primary_attr": "str",
+    "attack_type": "Melee",
+    "roles": [
+      "Offlane",
+      "Initiator",
+      "Disabler",
+      "Durable",
+      "Nuker"
+    ],
+    "legs": 2
+  },
   {
     "id": 52,
     "name": "npc_dota_hero_leshrac",
@@ -787,9 +846,25 @@
     ],
     "legs": 2
   },
+    {
+    "id": 53,
+    "name": "npc_dota_hero_nature's prophet",
+    "localized_name": "Nature\u0027s Prophet",
+    "primary_attr": "int",
+    "attack_type": "Ranged",
+    "roles": [
+      "2nd_Supp",
+      "Carry",
+      "Jungler",
+      "Pusher",
+      "Escape",
+      "Nuker"
+    ],
+    "legs": 2
+  },
   {
     "id": 54,
-    "name": "npc_dota_hero_life_stealer",
+    "name": "npc_dota_hero_lifestealer",
     "localized_name": "Lifestealer",
     "primary_attr": "str",
     "attack_type": "Melee",
@@ -1352,6 +1427,20 @@
   {
     "id": 91,
     "name": "npc_dota_hero_wisp",
+    "localized_name": "Io",
+    "primary_attr": "str",
+    "attack_type": "Ranged",
+    "roles": [
+      "Lane_Supp",
+      "Support",
+      "Escape",
+      "Nuker"
+    ],
+    "legs": 0
+  },
+    {
+    "id": 91,
+    "name": "npc_dota_hero_io",
     "localized_name": "Io",
     "primary_attr": "str",
     "attack_type": "Ranged",
