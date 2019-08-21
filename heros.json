@@ -20,7 +20,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
-      "Playmaker_Off",
+      "Offlane",
       "Initiator",
       "Durable",
       "Disabler",
@@ -231,7 +231,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
-      "Playmaker_Off",
+      "Offlane",
       "Initiator",
       "Disabler",
       "Support",
@@ -423,7 +423,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
-      "Playmaker_Off",
+      "Offlane",
       "Initiator",
       "Durable",
       "Disabler",
@@ -553,7 +553,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
-      "Playmaker_Off",
+      "Offlane",
       "Initiator",
       "Disabler",
       "Durable",
@@ -747,7 +747,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
-      "Playmaker_Off",
+      "Offlane",
       "Initiator",
       "Disabler",
       "Durable",
@@ -810,7 +810,7 @@
     "primary_attr": "int",
     "attack_type": "Melee",
     "roles": [
-      "Playmaker_Off",
+      "Offlane",
       "Initiator",
       "Jungler",
       "Escape",
@@ -955,7 +955,7 @@
     "primary_attr": "int",
     "attack_type": "Ranged",
     "roles": [
-      "Playmaker_Off",
+      "Offlane",
       "Initiator",
       "Jungler",
       "Disabler",
@@ -1013,7 +1013,7 @@
     "attack_type": "Melee",
     "roles": [
       "2nd_Core",
-      "Playmaker_Off",
+      "Offlane",
       "Carry",
       "Disabler",
       "Initiator",
@@ -1154,7 +1154,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
-      "Playmaker_Off",
+      "Offlane",
       "Carry",
       "Initiator",
       "Durable",
@@ -1430,7 +1430,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
-      "Playmaker_Off",
+      "Offlane",
       "Durable",
       "Initiator",
       "Disabler",
@@ -1446,7 +1446,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
-      "Playmaker_Off",
+      "Offlane",
       "Initiator",
       "Disabler",
       "Nuker",
@@ -1461,7 +1461,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
-      "Playmaker_Off",
+      "Offlane",
       "Nuker",
       "Durable",
       "Escape"
@@ -1546,7 +1546,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
-      "Playmaker_Off",
+      "Offlane",
       "Carry",
       "Disabler",
       "Initiator",
@@ -1609,7 +1609,7 @@
     "attack_type": "Melee",
     "roles": [
       "2nd_Supp",
-      "Playmaker_Off",
+      "Offlane",
       "Support",
       "Nuker",
       "Disabler",
@@ -1763,7 +1763,7 @@
     "primary_attr": "str",
     "attack_type": "Melee",
     "roles": [
-      "Playmaker_Off",
+      "Offlane",
       "Carry",
       "Initiator",
       "Disabler",
