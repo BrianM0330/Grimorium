@@ -34,6 +34,8 @@ class Crunchy(Retriever):
 			self.benchmark_data = json.load(infile2)
 
 	def win_rates(self):
+		""" This program goes through the JSON data and gathers data on the individual hero's pick and win statistics.
+		The win/loss ratio is calculated by dividing wins/picks. There is also an overall winrate that is calculated."""
 
 		for i in self.data:
 			if self.heroID == i['id']:
@@ -102,6 +104,10 @@ class Crunchy(Retriever):
 		pass
 
 	def get_benchmarks(self):
+		"""Goes through hero_benchmarks.json which contains a hero's benchmarks on Gold per Minute (GPM) and
+		Experience per Minute (XPM) both of which are critical statistics in analyzing performance. It also
+		finds LH@10 (last hits at 10 minutes) and gives the user statistics on what to expect in last hits 10 minutes
+		into the game."""
 		gpm_percentile99 = 0
 		gpm_percentile50 = 0
 		gpm_percentile10 = 0
@@ -153,32 +159,39 @@ class Crunchy(Retriever):
 		print("There is a standard deviation of {}".format(gpm_stdev))
 
 	def graph(self):
-		# --------------------Graphing Hero Picks (Bar)-----------------------------#
+		"""This method organizes the data into Pandas dataframes and outputs it using Plotly."""
+
+		# --------------------Dataframe------------------- #
 		self.data = sorted(self.data.items())  # sorting the json entries
 		df = pd.DataFrame.from_dict(self.data, orient='columns')
 		df.columns = ['Picks', 'Results']
 		df = df.iloc[:16]
-		print(df)
 
 		ranks = ['Guardian', 'Crusader', 'Archon', 'Legend', 'Ancient', 'Divine']
 		picks = df.iloc[[2, 4, 6, 8, 10, 12], 1]
 		wins = df.iloc[[3, 5, 7, 9, 11, 13], 1]
 
-		groupedBar = go.Figure(data=[
-			go.Bar(name='Picks', x=ranks, y=picks),
-			go.Bar(name='Wins', x=ranks, y=wins)
-		])
-		groupedBar.update_layout(barmode='group')
-		groupedBar.show(renderer='browser')
-		# -------------Graphing hero W/L (Line)--------------------------------#
 		winrates = [self.winrate_guardian, self.winrate_crusader, self.winrate_archon, self.winrate_legend,
 		            self.winrate_ancient, self.winrate_divine]
-		lineStats = go.Figure(data=[
-			go.Scatter(x=ranks, y=winrates),
-			go.Scatter(x=ranks, y=[self.winrate_ratio] * 6)
-		]
-		)
-		lineStats.show(renderer='browser')
+
+		# -----------------------------Graphing Hero Picks (Bar)-----------------------------#
+		# grouped_bar = go.Figure(data=[
+		# 	go.Bar(name='Picks', x=ranks, y=picks),
+		# 	go.Bar(name='Wins', x=ranks, y=wins)
+		# ])
+		# grouped_bar.update_layout(barmode='group')
+		# grouped_bar.show(renderer='browser')
+
+		# -----------------------------Graphing  hero W/L (Line)--------------------------------#
+		# line_stats = go.Figure(data=[
+		# 	go.Scatter(x=ranks, y=winrates),
+		# 	go.Scatter(x=ranks, y=[self.winrate_ratio] * 6)
+		# ]
+		# )
+		# line_stats.show(renderer='browser')
+
+
+
 		# ---------------------- Subplot -----------------------------#
 		fig = make_subplots(rows=1, cols=3)
 		fig.add_trace(
@@ -195,13 +208,9 @@ class Crunchy(Retriever):
 		)
 		fig.add_trace(
 			go.Bar(name='Wins', x=ranks, y=wins),
-			row=1, col=3
+			row=1, col=2
 		)
-		fig.add_trace(
-			go.Histogram(x=picks, name='test'),
-			row=1, col=3
-		)
-		fig.update_layout(height=800, width=1200, title_text="Test")
+		fig.update_layout(height=1080, width=1920, title_text="Test")
 		fig.show(renderer='browser')
 
 	def helper(self):
@@ -276,10 +285,9 @@ class Crunchy(Retriever):
 		return suggested_items
 
 
-t = Crunchy('Terrorblade')
+t = Crunchy()
 t.call()
 t.win_rates()
 t.get_benchmarks()
-# t.graph()
 t.helper()
 t.guide_parser()
