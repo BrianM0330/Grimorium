@@ -42,8 +42,6 @@ class Crunchy(Retriever):
 		for i in self.data:
 			if self.heroID == i['id']:
 				self.data = i  # makes data the hero dictionary
-				name = i['localized_name']
-				leg_count = i['legs']
 
 				self.winrate_herald = i['1_win'] / i['1_pick']  # herald
 				self.pick_totals.append(i['1_pick'])
@@ -82,9 +80,7 @@ class Crunchy(Retriever):
 				self.winrate_ratio = self.totalWins / self.totalPicks
 				# pass
 
-				print('\n' + "This hero has {} legs, let's see how it performs!".format(leg_count) + '\n'
-
-				      + 'Winrate in Herald games:\t\t' + "{:.2%}".format(self.winrate_herald) + '\n'
+				print('\n' + 'Winrate in Herald games:\t\t' + "{:.2%}".format(self.winrate_herald) + '\n'
 
 				      + 'Winrate in Guardian games:\t\t' + "{:.2%}".format(self.winrate_guardian) + '\n'
 
@@ -225,10 +221,12 @@ class Crunchy(Retriever):
 			suggested_item_phases.append(section.text)
 			for i in section.contents[1].contents[1].contents:
 				item = i.attrs['itemname']
-				suggested_item_names[list_index].append(item)
+
+				suggested_item_names[list_index].append(item.capitalize().replace('_', ' '))
 		suggested_items = dict(zip(suggested_item_phases, suggested_item_names))
 		for item in suggested_items:
-			print(item, suggested_items[item], end='\n\n')
+			print(item + ':', end='\t')
+			print(*suggested_items[item], sep=', ', end='\n\n')
 		print('---------------------------------------------------------------------------------------')
 		self.do_graphs()
 		return suggested_items
@@ -239,9 +237,10 @@ class Crunchy(Retriever):
 		do = input("If you would like to see visualizations of {}'s W/L ratio and pick rates \t\t\t 1 \n\n"
 		           "If you would like to get statistics for another hero \t\t\t\t\t\t\t\t\t 2 \n\n "
 		           "To exit the program press ENTER".format(self.hero))
+
 		if do == '1':
 			# --------------------Dataframe------------------- #
-			if do == "Y":
+			if do == "1":
 				self.data = sorted(self.data.items())  # sorting the json entries
 				df = pd.DataFrame.from_dict(self.data, orient='columns')
 				df.columns = ['Picks', 'Results']
