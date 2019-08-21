@@ -14,20 +14,21 @@ class Retriever(object):
 				self.hero = self.promptforHero()
 
 	def heroDefaults(self):
-		"""Opens the json file with heredata and loads it into self.heroValues """
+		"""Opens the json file with hero data and loads it into self.heroValues """
 		with open('heros.json', 'r') as myfile:
 			data = myfile.read()
 		self.heroValues = json.loads(data) #need to only get the specific dictionary for the hero
 
 	def promptforHero(self):
-		"""A simple prompt used if the entry is blank or a hero doesn't exist"""
+		"""A prompt used if the entry is blank or a hero doesn't exist"""
 		self.hero = input('Could you please enter the hero you want stats for? \n ')
 		return self.hero.lower()
 
 	def call(self):
-		"""First checks if hero exists. If it does, it then gets its localized_name and id from
-		heros.json. It also fixes spaces in the hero name."""
-		if ' ' in self.hero:    #before calling for stats, make sure hero will be valid
+		"""First checks if hero exists. If it does it gets its localized_name and id from
+		heros.json. If there are spaces or dashes in the name it is formatted to work with the program.
+		Once formatted, it makes a request to the OpenDota API and updates the JSON files with the new data."""
+		if ' ' in self.hero:    # prepares hero name
 			self.hero = self.hero.replace(' ', '_')
 		if '-' in self.hero:
 			self.hero = self.hero.replace('-', '')
@@ -40,7 +41,6 @@ class Retriever(object):
 				print('The hero {} exists! It has an ID Number of {}'.format(self.hero, self.heroID))
 				pass
 
-		#gets daily stats
 		with open('recent_stats.json', 'w') as outfile:
 			data = requests.get('https://api.opendota.com/api/herostats').content
 			loaded = json.loads(data)
