@@ -85,21 +85,21 @@ class Crunchy(Retriever):
 				print(name + '\n' +
 				      "This hero has {} legs, let's see how it performs!".format(leg_count) + '\n'
 
-				      + 'Winrate in Herald games:' + '\t' + str(self.winrate_herald) + '\n'
+				      + 'Winrate in Herald games:\t\t' + "{:.2%}".format(self.winrate_herald) + '\n'
 
-				      + 'Winrate in Guardian games:' + '\t' + str(self.winrate_guardian) + '\n'
+				      + 'Winrate in Guardian games:\t\t' + "{:.2%}".format(self.winrate_guardian) + '\n'
 
-				      + 'Winrate in Crusader games:' + '\t' + str(self.winrate_crusader) + '\n'
+				      + 'Winrate in Crusader games:\t\t' + "{:.2%}".format(self.winrate_crusader) + '\n'
 
-				      + 'Winrate in Archon games:' + '\t' + str(self.winrate_archon) + '\n'
+				      + 'Winrate in Archon games:\t\t' + "{:.2%}".format(self.winrate_archon) + '\n'
 
-				      + 'Winrate in Legend games:' + '\t' + str(self.winrate_legend) + '\n'
+				      + 'Winrate in Legend games:\t\t' + "{:.2%}".format(self.winrate_legend) + '\n'
 
-				      + 'Winrate in Ancient games:' + '\t' + str(self.winrate_ancient) + '\n'
+				      + 'Winrate in Ancient games:\t\t' + "{:.2%}".format(self.winrate_ancient) + '\n'
 
-				      + 'Winrate in Divine games:' + '\t' + str(self.winrate_divine) + '\n'
+				      + 'Winrate in Divine games:\t\t' + "{:.2%}".format(self.winrate_divine) + '\n'
 
-				      + 'Winrate in Pro games games:' + '\t' + str(self.winrate_pro_league) + '\n')
+				      + 'Winrate in Pro games games:\t\t' + "{:.2%}".format(self.winrate_pro_league) + '\n')
 				break
 
 		print("In {} games, {} has an overall winrate of {} ".format(sum(self.pick_totals), self.hero,
