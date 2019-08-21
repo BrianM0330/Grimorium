@@ -39,6 +39,7 @@ class Retriever(object):
 				self.hero = i['localized_name']
 				self.heroID = i['id']
 				print('The hero {} exists! It has an ID Number of {}'.format(self.hero, self.heroID))
+				print('Now finding stats for {}'.format(self.hero))
 				break
 
 		with open('recent_stats.json', 'w') as outfile:

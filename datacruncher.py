@@ -82,8 +82,7 @@ class Crunchy(Retriever):
 				self.winrate_ratio = self.totalWins / self.totalPicks
 				# pass
 
-				print(name + '\n' +
-				      "This hero has {} legs, let's see how it performs!".format(leg_count) + '\n'
+				print('\n' + "This hero has {} legs, let's see how it performs!".format(leg_count) + '\n'
 
 				      + 'Winrate in Herald games:\t\t' + "{:.2%}".format(self.winrate_herald) + '\n'
 
@@ -102,7 +101,7 @@ class Crunchy(Retriever):
 				      + 'Winrate in Pro games games:\t\t' + "{:.2%}".format(self.winrate_pro_league) + '\n')
 				break
 
-		print("In {} games, {} has an overall winrate of {} ".format(sum(self.pick_totals), self.hero,
+		print("In {} games, {} has an overall winrate of {:.2%} \n".format(sum(self.pick_totals), self.hero,
 		                                                             self.winrate_ratio))
 		# pass
 
@@ -115,7 +114,6 @@ class Crunchy(Retriever):
 		gpm_percentile50 = 0
 		gpm_percentile10 = 0
 		self.gpm_totals = []
-		gpm_stdev = 0
 
 		lh10_percentile99 = 0
 		lh10_percentile50 = 0
@@ -149,17 +147,17 @@ class Crunchy(Retriever):
 				self.gpm_totals.append(i['value'])
 			if i['percentile'] == 0.95:
 				self.gpm_totals.append(i['value'])
+				gpm_percentile95 = i['value']
 			if i['percentile'] == 0.99:
-				gpm_percentile99 = i['value']
 				self.gpm_totals.append(i['value'])
 		gpm_stdev = np.std(self.gpm_totals)
 
 		middle_percentile_lh10 = list(self.benchmark_data['result']['lhten'])[4]['value']
-
+		print("At 10 minutes, you can expect to have {} last hits.".format(middle_percentile_lh10))
 		print("On average expect to get a GPM of {}. On a good game {} and on a bad one {}".format(gpm_percentile50,
-		                                                                                           gpm_percentile99,
+		                                                                                           gpm_percentile95,
 		                                                                                           gpm_percentile10))
-		print("There is a standard deviation of {}".format(gpm_stdev))
+		print("There is a standard deviation of {:.0f}\n".format(gpm_stdev))
 
 	def helper(self):
 		starting_damage = 0
