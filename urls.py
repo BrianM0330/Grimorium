@@ -38,6 +38,7 @@ core_guides = {
 	'bloodseeker': 'https://steamcommunity.com/sharedfiles/filedetails/?id=1468058113',
 	'arc warden': 'https://steamcommunity.com/sharedfiles/filedetails/?id=1468057623',
 	'antimage': 'https://steamcommunity.com/sharedfiles/filedetails/?id=1468056754',
+	'anti mage': 'https://steamcommunity.com/sharedfiles/filedetails/?id=1468056754',
 	'wraith king': 'https://steamcommunity.com/sharedfiles/filedetails/?id=1468056139',
 	'tiny': 'https://steamcommunity.com/sharedfiles/filedetails/?id=1468053472',
 	'sven': 'https://steamcommunity.com/sharedfiles/filedetails/?id=1468050985',
