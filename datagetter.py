@@ -9,10 +9,6 @@ class Retriever(object):
 			self.heroDefaults()
 			self.heroID = 0
 			self.hero = entry.lower()
-			if ' ' in self.hero:  # prepares hero name
-				self.hero = self.hero.replace(' ', '_')
-			if '-' in self.hero:
-				self.hero = self.hero.replace('-', '')
 			self.roles = []
 			if len(self.hero) == 0:
 				self.hero = self.promptforHero()
@@ -32,6 +28,10 @@ class Retriever(object):
 		"""First checks if hero exists. If it does it gets its localized_name and id from
 		heros.json. If there are spaces or dashes in the name it is formatted to work with the program.
 		Once formatted, it makes a request to the OpenDota API and updates the JSON files with the new data."""
+		if ' ' in self.hero:  # prepares hero name
+			self.hero = self.hero.replace(' ', '_')
+		if '-' in self.hero:
+			self.hero = self.hero.replace('-', '')
 
 		for i in self.heroValues:
 			if len(self.hero) > 1 and self.hero in i['name']:
@@ -39,7 +39,7 @@ class Retriever(object):
 				self.hero = i['localized_name']
 				self.heroID = i['id']
 				print('The hero {} exists! It has an ID Number of {}'.format(self.hero, self.heroID))
-				pass
+				break
 
 		with open('recent_stats.json', 'w') as outfile:
 			data = requests.get('https://api.opendota.com/api/herostats').content
