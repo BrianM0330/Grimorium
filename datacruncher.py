@@ -186,7 +186,12 @@ class Crunchy(Retriever):
 		self.guide_parser()
 
 	def guide_parser(self):
-		# looks for hero and its role and matches it to a guide URL
+		"""
+		This function goes through guides by ImmortalFaith
+		(https://steamcommunity.com/id/ImmortalFaith/myworkshopfiles/?section=guides&p=1)
+		The URLs are in urls.py and are sorted by hero role. Carry, Support, and Offlane heros all have a dictionary
+		with a URL to their guide attached to their localized name.
+		"""
 		if 'Carry' in self.roles:
 			for key in urls.core_guides:
 				if self.hero.lower() in key.lower():
@@ -274,7 +279,7 @@ class Crunchy(Retriever):
 
 
 			# ---------------------- Subplot -----------------------------#
-			fig = make_subplots(rows=1, cols=3)
+			fig = make_subplots(rows=1, cols=2)
 			fig.add_trace(
 				go.Scatter(x=ranks, y=winrates),
 				row=1, col=1
@@ -291,7 +296,7 @@ class Crunchy(Retriever):
 				go.Bar(name='Wins', x=ranks, y=wins),
 				row=1, col=2
 			)
-			fig.update_layout(height=1080, width=1920, title_text="Test")
+			fig.update_layout(height=1080, width=1920, title_text='{} statistics'.format(self.hero))
 			fig.show(renderer='browser')
 
 		elif do == '2':
