@@ -36,8 +36,8 @@ class Crunchy(Retriever):
 		self.helper()
 
 	def win_rates(self):
-		""" This program goes through the JSON data and gathers data on the individual hero's pick and win statistics.
-		The win/loss ratio is calculated by dividing wins/picks. There is also an overall winrate that is calculated."""
+		""" This function goes through the retrieved JSON data and gathers data on the individual hero's pick and win statistics.
+		The win/loss ratio is calculated by dividing wins/picks. It then prints out the most important hero statistics. """
 
 		for i in self.data:
 			if self.heroID == i['id']:
@@ -104,8 +104,8 @@ class Crunchy(Retriever):
 	def get_benchmarks(self):
 		"""Goes through hero_benchmarks.json which contains a hero's benchmarks on Gold per Minute (GPM) and
 		Experience per Minute (XPM) both of which are critical statistics in analyzing performance. It also
-		finds LH@10 (last hits at 10 minutes) and gives the user statistics on what to expect in last hits 10 minutes
-		into the game."""
+		finds LH@10 (last hits at 10 minutes) and gives the user statistics on what to expect in terms of
+		 last hits 10 minutes into the game."""
 		gpm_percentile99 = 0
 		gpm_percentile50 = 0
 		gpm_percentile10 = 0
@@ -156,6 +156,10 @@ class Crunchy(Retriever):
 		print("There is a standard deviation of {:.0f}\n".format(gpm_stdev))
 
 	def helper(self):
+		"""
+		This function generates a Pandas dataframe from the hero data. It gathers important data that the user will
+		find helpful in the early stages of a game. Starting mana, primary attributes, starting damage and bonuses.
+		"""
 		starting_damage = 0
 
 		# create dataframe for desired values
@@ -190,7 +194,9 @@ class Crunchy(Retriever):
 		This function goes through guides by ImmortalFaith
 		(https://steamcommunity.com/id/ImmortalFaith/myworkshopfiles/?section=guides&p=1)
 		The URLs are in urls.py and are sorted by hero role. Carry, Support, and Offlane heros all have a dictionary
-		with a URL to their guide attached to their localized name.
+		with a URL to their guide attached to their localized name. Once the hero and it's role is identified, the
+		function parses the guide located in the URL for items and formats them based on their timings - early game,
+		mid game, late game, and situational.
 		"""
 		if 'Carry' in self.roles:
 			for key in urls.core_guides:
@@ -237,7 +243,10 @@ class Crunchy(Retriever):
 		return suggested_items
 
 	def do_graphs(self):
-		"""This method organizes the data into Pandas dataframes and outputs it using Plotly."""
+		"""This method organizes the data into Pandas dataframes and outputs it using Plotly. If the user chooses
+		to see their data, it is output into a browser window. If the user chooses not to have the data visualized,
+		they are prompted to press 2 for statistics for another hero. If they are finished with it, pressing ENTER
+		will exit the program."""
 
 		do = input("If you would like to see visualizations of {}'s W/L ratio and pick rates \t\t\t 1 \n\n"
 		           "If you would like to get statistics for another hero \t\t\t\t\t\t\t\t\t 2 \n\n "
@@ -259,24 +268,6 @@ class Crunchy(Retriever):
 				            self.winrate_ancient, self.winrate_divine]
 			else:
 				return
-
-			# -----------------------------Graphing Hero Picks (Bar)-----------------------------#
-			# grouped_bar = go.Figure(data=[
-			# 	go.Bar(name='Picks', x=ranks, y=picks),
-			# 	go.Bar(name='Wins', x=ranks, y=wins)
-			# ])
-			# grouped_bar.update_layout(barmode='group')
-			# grouped_bar.show(renderer='browser')
-
-			# -----------------------------Graphing  hero W/L (Line)--------------------------------#
-			# line_stats = go.Figure(data=[
-			# 	go.Scatter(x=ranks, y=winrates),
-			# 	go.Scatter(x=ranks, y=[self.winrate_ratio] * 6)
-			# ]
-			# )
-			# line_stats.show(renderer='browser')
-
-
 
 			# ---------------------- Subplot -----------------------------#
 			fig = make_subplots(rows=1, cols=2)
