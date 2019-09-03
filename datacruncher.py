@@ -238,7 +238,7 @@ class Crunchy(Retriever):
 		for item in suggested_items:
 			print(item + ':', end='\t')
 			print(*suggested_items[item], sep=', ', end='\n\n')
-		print('---------------------------------------------------------------------------------------')
+			print('-'*70)
 		self.do_graphs()
 		return suggested_items
 
