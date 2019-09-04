@@ -8,5 +8,5 @@
 
 <br> 
 
-# :video_game: What is this? 
+# :video_game: What is Grimorium? 
 Grimorium is a light-weight terminal-based application for DOTA 2 players. It's built purely using Python and quickly gets relevant hero statistics. Grimorium excels at being intuitive and is designed to be accessible in a pinch. Picked a hero you're not familiar with? Grimorium gets you last hit numbers, and benchmarks based on data from thousands of games played on the hero that are updated every time you search. Whether you're a new player or an experienced one - the data will always be useful in helping you plan out the game. Having a rough start? Destroying the lane? You'll know exactly where you stand thanks to Grimorium. 
